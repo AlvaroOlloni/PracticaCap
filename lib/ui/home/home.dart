@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mi_app/ui/home/widgets.dart';
 
 class Home extends StatelessWidget {
@@ -7,8 +8,14 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*
       appBar: AppBar(
-        title: const Text("Home"),
+        title: Text(
+          "Home",
+          style: GoogleFonts.amaranth(
+            textStyle: const TextStyle(fontSize: 30),
+          ),
+        ),
         centerTitle: true,
         backgroundColor: Colors.black,
         titleTextStyle: const TextStyle(
@@ -16,6 +23,7 @@ class Home extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
+      */
       body: cuerpo(),
     );
   }

@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:mi_app/ui/login/login.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../home/home.dart';
+
 String email = FirebaseAuth.instance.currentUser!.email.toString();
+
+final userName = TextEditingController();
 
 Widget cuerpo() {
   return Container(
@@ -18,32 +22,11 @@ Widget cuerpo() {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        const SizedBox(
+          height: 80,
+        ),
         cardName(),
-        cardNote(),
-      ],
-    ),
-  );
-}
-
-Widget cuerpoRespaldo() {
-  return Container(
-    decoration: const BoxDecoration(
-      color: Colors.white,
-      image: DecorationImage(
-        image: AssetImage("fondo_home2.png"),
-        fit: BoxFit.cover,
-      ),
-    ),
-    child: Column(
-      children: [
-        Row(
-          children: [
-            cardName(),
-          ],
-        ),
-        Row(
-          children: [cardNote()],
-        ),
+        //cardNote(),
       ],
     ),
   );
@@ -52,7 +35,7 @@ Widget cuerpoRespaldo() {
 Card cardName() {
   return Card(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    margin: const EdgeInsets.only(left: 15, top: 15, bottom: 15, right: 100),
+    margin: const EdgeInsets.only(left: 50, top: 15, bottom: 15, right: 50),
     elevation: 10,
     color: const Color.fromARGB(66, 0, 0, 0),
     child: Column(
@@ -60,7 +43,6 @@ Card cardName() {
         Column(
           children: [
             const ListTile(
-              //contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
               title: Text(
                 'Nombre:',
                 style: TextStyle(
@@ -99,30 +81,35 @@ Card cardName() {
         const SizedBox(
           height: 10,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextButton(
-              onPressed: () => {},
-              style: TextButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                  textStyle: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  )),
-              child: const Text(
-                'Modificar',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Color.fromARGB(255, 0, 0, 0),
-                ),
-              ),
-            ),
-            const Text('      '),
-            botonSalir(),
-            //const Text(" "),
-          ],
-        ),
+        StreamBuilder<Object>(
+            stream: null,
+            builder: (context, snapshot) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () => {createAlertDialog(context)},
+                    style: TextButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 255, 255, 255),
+                        textStyle: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    child: const Text(
+                      'Modificar',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ),
+                  ),
+                  const Text('      '),
+                  botonSalir(),
+                  //const Text(" "),
+                ],
+              );
+            }),
         const SizedBox(
           height: 10,
         ),
@@ -131,11 +118,47 @@ Card cardName() {
   );
 }
 
+createAlertDialog(BuildContext context) {
+  final userName = TextEditingController();
+
+  String name = ' ';
+
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text("Cambiar nombre de usuario"),
+        content: TextField(
+          controller: userName,
+        ),
+        actions: <Widget>[
+          MaterialButton(
+            elevation: 0.5,
+            child: const Text("Aceptar"),
+            onPressed: () {
+              name = userName.text;
+
+              final info_changed = <String, String>{"Username": name};
+
+              FirebaseFirestore.instance
+                  .collection("users")
+                  .doc(FirebaseAuth.instance.currentUser!.email.toString())
+                  .set(info_changed);
+
+              Navigator.of(context).pop(userName.text.toString());
+            },
+          )
+        ],
+      );
+    },
+  );
+}
+
 Card cardNote() {
   return Card(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    margin: const EdgeInsets.only(left: 15, top: 15, bottom: 15, right: 200),
-    color: const Color.fromARGB(66, 0, 0, 0),
+    margin: const EdgeInsets.only(left: 100, top: 15, bottom: 15, right: 100),
+    color: const Color.fromARGB(80, 0, 0, 0),
     elevation: 10,
     child: Column(
       children: <Widget>[
@@ -161,28 +184,35 @@ Card cardNote() {
         ),
 
         // Usamos una fila para ordenar los botones del card
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(
-              width: 100,
-            ),
-            TextButton(
-              onPressed: () => {},
-              style: TextButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                textStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              child: const Text(
-                'Ver',
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ),
-            ),
-          ],
-        ),
+        StreamBuilder(
+            stream: null,
+            builder: (context, snapshot) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(
+                    width: 100,
+                  ),
+                  TextButton(
+                    onPressed: () async => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => const Home()))
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                      textStyle: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    child: const Text(
+                      'Ver',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ),
+                ],
+              );
+            }),
         const SizedBox(
           height: 10,
         )
@@ -197,7 +227,7 @@ Widget botonSalir() {
       builder: (context, snapshot) {
         return TextButton(
           style: TextButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 255, 255, 255),
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               textStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

@@ -13,11 +13,16 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 21, 0, 255),
+      /*
       appBar: AppBar(
-        title: const Text("Usuario"),
+        title: Text(
+          "Usuario",
+          style: GoogleFonts.amaranth(
+            textStyle: const TextStyle(fontSize: 30),
+          ),
+        ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         titleTextStyle: const TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
@@ -25,6 +30,7 @@ class _UserScreenState extends State<UserScreen> {
           //fontStyle: GoogleFonts.aBeeZee()
         ),
       ),
+      */
       body: cuerpo(),
     );
   }
