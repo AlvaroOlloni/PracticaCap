@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mi_app/ui/nav.dart';
 
 import 'widgets.dart';
 
@@ -6,6 +8,7 @@ class Inicio extends StatefulWidget {
   const Inicio({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _InicioState createState() => _InicioState();
 }
 

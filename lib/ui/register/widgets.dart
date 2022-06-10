@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mi_app/main.dart';
-import 'package:mi_app/ui/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mi_app/ui/login/login.dart';
 
@@ -48,7 +47,7 @@ Widget cuerpo() {
             const SizedBox(
               height: 10.0,
             ),
-            botonAbrirRegistrar(),
+            botonVolver(),
           ]),
     ),
   );
@@ -129,6 +128,7 @@ Widget botonRegistrar() {
             try {
               await FirebaseAuth.instance
                   .createUserWithEmailAndPassword(email: usu, password: pass);
+              // ignore: avoid_print
               print("Usuario registrado");
               if (FirebaseAuth.instance.currentUser != null) {
                 // ignore: use_build_context_synchronously
@@ -141,11 +141,14 @@ Widget botonRegistrar() {
               }
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
+                // ignore: avoid_print
                 print('The password provided is too weak.');
               } else if (e.code == 'email-already-in-use') {
+                // ignore: avoid_print
                 print('The account already exists for that email.');
               }
             } catch (e) {
+              // ignore: avoid_print
               print(e);
             }
             crearDataUsuario();
@@ -166,7 +169,7 @@ void crearDataUsuario() {
   users.doc(usu).set(data);
 }
 
-Widget botonAbrirRegistrar() {
+Widget botonVolver() {
   return StreamBuilder(
       stream: null,
       builder: (context, snapshot) {

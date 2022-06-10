@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import '../models/Gif.dart';
 
 class GifScreen extends StatefulWidget {
+  const GifScreen({Key? key}) : super(key: key);
+
   @override
   State<GifScreen> createState() => _GifScreenState();
 }
@@ -47,20 +49,24 @@ class _GifScreenState extends State<GifScreen> {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Material App Bar'),
+          title: const Text('Top de Gifs actuales'),
+          centerTitle: true,
+          backgroundColor: Colors.black,
         ),
         body: FutureBuilder(
           future: _listadoGifs,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              // ignore: avoid_print
               print(snapshot.data);
               return GridView.count(
                 crossAxisCount: 2,
                 children: _listGifs(snapshot.data as List<Gif>),
               );
             } else if (snapshot.hasError) {
+              // ignore: avoid_print
               print(snapshot.error);
-              return Text("Hola2");
+              return const Text("Hola2");
             }
             return const Center(child: CircularProgressIndicator());
           },

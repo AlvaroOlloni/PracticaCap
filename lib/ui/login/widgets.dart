@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
-import 'package:mi_app/main.dart';
-import 'package:mi_app/ui/home/home.dart';
+import 'package:mi_app/ui/nav.dart';
 import 'package:mi_app/ui/register/register.dart';
-import 'login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final usuario = TextEditingController();
@@ -109,23 +105,28 @@ Widget botonEntrar() {
             try {
               await FirebaseAuth.instance
                   .signInWithEmailAndPassword(email: usu, password: pass);
+              // ignore: avoid_print
               print("Usuario logueado");
               if (FirebaseAuth.instance.currentUser != null) {
                 // ignore: use_build_context_synchronously
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const MiApp(),
+                    builder: (context) => const NavScreen(),
                   ),
+                  (route) => false,
                 );
               }
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
+                // ignore: avoid_print
                 print('The password provided is too weak.');
               } else if (e.code == 'email-already-in-use') {
+                // ignore: avoid_print
                 print('The account already exists for that email.');
               }
             } catch (e) {
+              // ignore: avoid_print
               print(e);
             }
 

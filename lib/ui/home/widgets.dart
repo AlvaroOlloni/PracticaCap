@@ -1,51 +1,82 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mi_app/api_rest/giphy_api.dart';
-import 'package:mi_app/main.dart';
-import 'package:mi_app/models/Gif.dart';
+
+import '../add/add.dart';
 
 Widget cuerpo() {
   return Container(
+    height: double.infinity,
     decoration: const BoxDecoration(
+      color: Colors.white,
       image: DecorationImage(
-        image: NetworkImage(
-            "https://i.pinimg.com/564x/e3/e5/b1/e3e5b121a4a6d008971cccbd3088ef01.jpg"),
+        image: AssetImage("fondo_home2.png"),
         fit: BoxFit.cover,
       ),
     ),
-    child: Center(
-      child: Column(
+    child: Column(
+      children: [
+        const SizedBox(
+          height: 40,
+        ),
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            botonGifs(),
-          ]),
+          children: [
+            botonAdd(),
+          ],
+        ),
+      ],
     ),
   );
 }
 
-Widget botonGifs() {
+Widget cuerpoRespaldo() {
+  return Container(
+    height: double.infinity,
+    decoration: const BoxDecoration(
+      color: Colors.white,
+      image: DecorationImage(
+        image: AssetImage("fondo_home2.png"),
+        fit: BoxFit.cover,
+      ),
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 50,
+        ),
+        botonAdd(),
+      ],
+    ),
+  );
+}
+
+Widget botonAdd() {
   return StreamBuilder(
-      stream: null,
-      builder: (context, snapshot) {
-        return TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
-            padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 5.0, horizontal: 100.0),
+    stream: null,
+    builder: (context, snapshot) {
+      return TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: const Color.fromARGB(100, 255, 255, 255),
+          textStyle: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddScreen(),
             ),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => GifScreen(),
-              ),
-            );
-          },
-          child: const Text(
-            "Ver Top 10 Gifs",
-            style: TextStyle(fontSize: 25, color: Colors.white),
-          ),
-        );
-      });
+          );
+        },
+        child: const Text(
+          "Añadir una nota",
+          style: TextStyle(fontSize: 25, color: Colors.white),
+        ),
+      );
+    },
+  );
 }
