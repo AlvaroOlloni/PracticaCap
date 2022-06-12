@@ -2,9 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mi_app/ui/login/login.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../home/home.dart';
 
 String email = FirebaseAuth.instance.currentUser!.email.toString();
 
@@ -13,9 +10,9 @@ final userName = TextEditingController();
 Widget cuerpo() {
   return Container(
     decoration: const BoxDecoration(
-      color: Colors.white,
+      color: Color.fromARGB(255, 21, 21, 21),
       image: DecorationImage(
-        image: AssetImage("fondo_home2.png"),
+        image: AssetImage("fondo_home3.jpg"),
         fit: BoxFit.cover,
       ),
     ),
@@ -35,18 +32,19 @@ Widget cuerpo() {
 Card cardName() {
   return Card(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    margin: const EdgeInsets.only(left: 50, top: 15, bottom: 15, right: 50),
-    elevation: 10,
-    color: const Color.fromARGB(66, 0, 0, 0),
+    margin: const EdgeInsets.only(left: 30, top: 15, bottom: 15, right: 30),
+    elevation: 4,
+    shadowColor: Colors.white,
+    color: Colors.black,
     child: Column(
       children: <Widget>[
         Column(
           children: [
             const ListTile(
               title: Text(
-                'Nombre:',
+                'Username:',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -54,7 +52,7 @@ Card cardName() {
               leading: Icon(
                 Icons.person,
                 size: 70,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 0, 110, 255),
               ),
             ),
             Row(
@@ -68,7 +66,7 @@ Card cardName() {
                   builder: (context, snapshot) => Text(
                     snapshot.hasData ? snapshot.data! : "",
                     style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                     textWidthBasis: TextWidthBasis.parent,
@@ -97,10 +95,10 @@ Card cardName() {
                           fontWeight: FontWeight.bold,
                         )),
                     child: const Text(
-                      'Modificar',
+                      'Change',
                       style: TextStyle(
                         fontSize: 18,
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: Color.fromARGB(255, 0, 110, 255),
                       ),
                     ),
                   ),
@@ -127,7 +125,7 @@ createAlertDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text("Cambiar nombre de usuario"),
+        title: const Text("Cambiar nombre de usuario"),
         content: TextField(
           controller: userName,
         ),
@@ -138,12 +136,12 @@ createAlertDialog(BuildContext context) {
             onPressed: () {
               name = userName.text;
 
-              final info_changed = <String, String>{"Username": name};
+              final infoChanged = <String, String>{"Username": name};
 
               FirebaseFirestore.instance
                   .collection("users")
                   .doc(FirebaseAuth.instance.currentUser!.email.toString())
-                  .set(info_changed);
+                  .set(infoChanged);
 
               Navigator.of(context).pop(userName.text.toString());
             },
@@ -154,79 +152,14 @@ createAlertDialog(BuildContext context) {
   );
 }
 
-Card cardNote() {
-  return Card(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    margin: const EdgeInsets.only(left: 100, top: 15, bottom: 15, right: 100),
-    color: const Color.fromARGB(80, 0, 0, 0),
-    elevation: 10,
-    child: Column(
-      children: <Widget>[
-        Column(
-          children: const [
-            ListTile(
-              //contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
-              title: Text(
-                'Notas',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              leading: Icon(
-                Icons.note_rounded,
-                size: 70,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-            ),
-          ],
-        ),
-
-        // Usamos una fila para ordenar los botones del card
-        StreamBuilder(
-            stream: null,
-            builder: (context, snapshot) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(
-                    width: 100,
-                  ),
-                  TextButton(
-                    onPressed: () async => {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Home()))
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      textStyle: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    child: const Text(
-                      'Ver',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
-                    ),
-                  ),
-                ],
-              );
-            }),
-        const SizedBox(
-          height: 10,
-        )
-      ],
-    ),
-  );
-}
-
 Widget botonSalir() {
   return StreamBuilder(
       stream: null,
       builder: (context, snapshot) {
         return TextButton(
           style: TextButton.styleFrom(
+              elevation: 10,
+              shadowColor: Colors.blue,
               backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               textStyle: const TextStyle(
                 fontSize: 18,
@@ -242,8 +175,11 @@ Widget botonSalir() {
             );
           },
           child: const Text(
-            "Cerrar Sesión",
-            style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 0, 0, 0)),
+            "Log Out",
+            style: TextStyle(
+              fontSize: 18,
+              color: Color.fromARGB(255, 0, 110, 255),
+            ),
           ),
         );
       });

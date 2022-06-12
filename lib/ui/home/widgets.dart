@@ -1,66 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:mi_app/ui/user/user.dart';
+import 'package:mi_app/ui/viewnotes/view.dart';
 
 import '../add/add.dart';
 
 Widget cuerpo() {
-  return Container(
-    decoration: const BoxDecoration(
-      color: Colors.white,
-      image: DecorationImage(
-        image: AssetImage("fondo_home2.png"),
-        fit: BoxFit.cover,
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      const SizedBox(
+        height: 80,
       ),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const SizedBox(
-          height: 80,
-        ),
-        cardNote(),
-        const SizedBox(
-          height: 20,
-        ),
-        cardAlarm(),
-      ],
-    ),
-  );
-}
-
-Widget botonAdd() {
-  return StreamBuilder(
-    stream: null,
-    builder: (context, snapshot) {
-      return TextButton(
-        style: TextButton.styleFrom(
-          backgroundColor: Colors.white,
-          textStyle: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
-          ),
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddScreen(),
-            ),
-          );
-        },
-        child: const Text(
-          "Añadir",
-          style: TextStyle(fontSize: 25, color: Colors.black),
-        ),
-      );
-    },
+      cardNote(),
+      const SizedBox(
+        height: 20,
+      ),
+      cardAlarm(),
+    ],
   );
 }
 
 Card cardNote() {
   return Card(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
     margin: const EdgeInsets.only(left: 100, right: 100),
     color: const Color.fromARGB(80, 0, 0, 0),
     elevation: 10,
@@ -69,7 +33,6 @@ Card cardNote() {
         Column(
           children: const [
             ListTile(
-              //contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
               title: Text(
                 'Notas',
                 style: TextStyle(
@@ -95,7 +58,7 @@ Card cardNote() {
           children: [
             botonAdd(),
             const SizedBox(
-              width: 20,
+              width: 5,
             ),
             StreamBuilder(
               stream: null,
@@ -114,7 +77,7 @@ Card cardNote() {
                         ),
                       ),
                       child: const Text(
-                        'Ver',
+                        'View',
                         style: TextStyle(fontSize: 25, color: Colors.black),
                       ),
                     ),
@@ -205,5 +168,84 @@ Card cardAlarm() {
         )
       ],
     ),
+  );
+}
+
+Widget botonVer() {
+  return StreamBuilder(
+    stream: null,
+    builder: (context, snapshot) {
+      return SizedBox(
+        width: 100,
+        height: 60,
+        child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            backgroundColor: Colors.white,
+            primary: Colors.white,
+            side: const BorderSide(
+              color: Color.fromARGB(250, 21, 21, 21),
+              width: 3,
+            ),
+            elevation: 4,
+            shadowColor: const Color.fromARGB(255, 220, 52, 55),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ViewScreen(),
+              ),
+            );
+          },
+          child: const Text(
+            "View",
+            style: TextStyle(
+                fontSize: 25, color: Color.fromARGB(255, 0, 120, 255)),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Widget botonAdd() {
+  return StreamBuilder(
+    stream: null,
+    builder: (context, snapshot) {
+      return SizedBox(
+        width: 100,
+        height: 60,
+        child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            backgroundColor: Colors.white,
+            primary: Colors.white,
+            side: const BorderSide(
+              color: Color.fromARGB(250, 21, 21, 21),
+              width: 3,
+            ),
+            elevation: 4,
+            shadowColor: const Color.fromARGB(255, 220, 52, 55),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AddScreen(),
+              ),
+            );
+          },
+          child: const Text(
+            "Add",
+            style: TextStyle(
+                fontSize: 25, color: Color.fromARGB(255, 0, 120, 255)),
+          ),
+        ),
+      );
+    },
   );
 }

@@ -68,6 +68,8 @@ Widget cuerpo() {
                   Navigator.pop(
                     context,
                   );
+                  titulo.clear();
+                  contenido.clear();
                 },
                 child: const Text(
                   "Volver",
@@ -131,6 +133,9 @@ Widget botonGuardar() {
             "titulo": t,
             "contenido": c,
           };
+
+          titulo.clear();
+          contenido.clear();
 
           FirebaseFirestore.instance
               .collection(FirebaseAuth.instance.currentUser!.email.toString())

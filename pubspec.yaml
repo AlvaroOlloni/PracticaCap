@@ -65,6 +65,7 @@ flutter:
   assets:
     - fondo_home.jpg
     - fondo_home2.png
+    - fondo_home3.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mi_app/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mi_app/ui/login/login.dart';
+import 'package:mi_app/ui/nav.dart';
 
 final userName = TextEditingController();
 
@@ -135,7 +136,7 @@ Widget botonRegistrar() {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const MiApp(),
+                    builder: (context) => const NavScreen(),
                   ),
                 );
               }

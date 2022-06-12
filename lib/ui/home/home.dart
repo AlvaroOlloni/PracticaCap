@@ -7,24 +7,109 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      /*
-      appBar: AppBar(
-        title: Text(
-          "Home",
-          style: GoogleFonts.amaranth(
-            textStyle: const TextStyle(fontSize: 30),
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.black,
-        titleTextStyle: const TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("fondo_home3.jpg"),
+          fit: BoxFit.cover,
         ),
       ),
-      */
-      body: cuerpo(),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 100,
+            child: Text(""),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              cardNotes(),
+            ],
+          ),
+        ],
+      ),
     );
   }
+}
+
+Widget notesText() {
+  return Flexible(
+    child: Column(
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          "Notes",
+          style: GoogleFonts.blackHanSans(
+              textStyle: const TextStyle(fontSize: 30),
+              fontSize: 50,
+              color: const Color.fromARGB(255, 0, 120, 255)),
+        )
+      ],
+    ),
+  );
+}
+
+Widget notesAdd() {
+  return Flexible(
+    child: Column(
+      children: [botonAdd()],
+    ),
+  );
+}
+
+Widget notesView() {
+  return Flexible(
+    child: Column(
+      children: [
+        botonVer(),
+      ],
+    ),
+  );
+}
+
+Widget cardNotes() {
+  return Flexible(
+    child: Container(
+      padding: const EdgeInsets.only(left: 10),
+      width: 320,
+      height: 190,
+      child: Card(
+        shadowColor: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        color: Colors.white,
+        elevation: 20,
+        child: Column(
+          children: <Widget>[
+            Column(
+              children: [
+                ListTile(
+                  title: const Text(""),
+                  subtitle: notesText(),
+                  leading: const Icon(
+                    Icons.note_outlined,
+                    size: 80,
+                    color: Color.fromARGB(255, 0, 120, 255),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    notesAdd(),
+                    notesView(),
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    ),
+  );
 }

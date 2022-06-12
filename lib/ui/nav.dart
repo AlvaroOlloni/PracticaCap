@@ -58,11 +58,15 @@ class _NavScreenState extends State<NavScreen> {
       currentIndex: _paginaActual,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(
+            Icons.home,
+          ),
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.supervised_user_circle),
+          icon: Icon(
+            Icons.supervised_user_circle,
+          ),
           label: "Users",
         )
       ],
