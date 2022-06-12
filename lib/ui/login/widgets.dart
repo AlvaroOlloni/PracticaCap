@@ -14,44 +14,35 @@ Widget cuerpo() {
   return Container(
     decoration: const BoxDecoration(
       image: DecorationImage(
-        image: NetworkImage(
-            "https://i.pinimg.com/originals/30/79/a2/3079a2b472e0ea0aa2667a2994fe6689.jpg"),
+        image: AssetImage("fondo_home4.png"),
         fit: BoxFit.cover,
       ),
     ),
     child: Center(
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            nombre(),
-            const SizedBox(
-              height: 50.0,
-            ),
-            campoUsuario(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            campoContrasena(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            botonEntrar(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            botonAbrirRegistrar(),
-          ]),
-    ),
-  );
-}
-
-Widget nombre() {
-  return const Text(
-    "Iniciar Sesión",
-    style: TextStyle(
-      color: Colors.white,
-      fontSize: 35.0,
-      fontWeight: FontWeight.bold,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          const SizedBox(
+            height: 50.0,
+          ),
+          const SizedBox(
+            height: 50.0,
+          ),
+          campoUsuario(),
+          const SizedBox(
+            height: 10.0,
+          ),
+          campoContrasena(),
+          const SizedBox(
+            height: 10.0,
+          ),
+          botonEntrar(),
+          const SizedBox(
+            height: 10.0,
+          ),
+          botonAbrirRegistrar(),
+        ],
+      ),
     ),
   );
 }
@@ -61,10 +52,12 @@ Widget campoUsuario() {
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
     child: TextField(
       controller: usuario,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       decoration: const InputDecoration(
-        hintText: "Usuario",
-        fillColor: Colors.white,
+        hintText: "Email",
+        fillColor: Color.fromARGB(99, 27, 38, 44),
         filled: true,
+        hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       ),
     ),
   );
@@ -76,10 +69,12 @@ Widget campoContrasena() {
     child: TextField(
       controller: password,
       obscureText: true,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       decoration: const InputDecoration(
-        hintText: "Contraseña",
-        fillColor: Colors.white,
+        hintText: "Password",
+        fillColor: Color.fromARGB(99, 27, 38, 44),
         filled: true,
+        hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       ),
     ),
   );
@@ -89,12 +84,11 @@ Widget botonEntrar() {
   return StreamBuilder(
       stream: null,
       builder: (context, snapshot) {
-        return TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
-            padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 5.0, horizontal: 100.0),
-            ),
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 4,
+            shadowColor: Colors.white,
+            primary: const Color.fromARGB(255, 255, 123, 0),
           ),
           onPressed: () async {
             usu = usuario.text;
@@ -116,6 +110,8 @@ Widget botonEntrar() {
                   ),
                   (route) => false,
                 );
+                usuario.clear();
+                password.clear();
               }
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
@@ -141,8 +137,9 @@ Widget botonEntrar() {
           */
           },
           child: const Text(
-            "Entrar",
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            "Go",
+            style: TextStyle(
+                fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         );
       });
@@ -152,12 +149,11 @@ Widget botonAbrirRegistrar() {
   return StreamBuilder(
       stream: null,
       builder: (context, snapshot) {
-        return TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
-            padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 5.0, horizontal: 100.0),
-            ),
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 4,
+            shadowColor: Colors.white,
+            primary: const Color.fromARGB(255, 255, 123, 0),
           ),
           onPressed: () {
             Navigator.push(
@@ -166,10 +162,13 @@ Widget botonAbrirRegistrar() {
                 builder: (context) => const RegisterScreen(),
               ),
             );
+            usuario.clear();
+            password.clear();
           },
           child: const Text(
-            "Registrarse",
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            "Register",
+            style: TextStyle(
+                fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         );
       });

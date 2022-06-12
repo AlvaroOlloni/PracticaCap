@@ -42,9 +42,10 @@ class _NavScreenState extends State<NavScreen> {
   Widget myBottomNav() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      backgroundColor: const Color.fromARGB(255, 91, 7, 215),
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.grey,
+      iconSize: 30,
       showUnselectedLabels: false,
       showSelectedLabels: false,
       unselectedFontSize: 0,

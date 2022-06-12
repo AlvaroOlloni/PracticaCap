@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mi_app/ui/nav.dart';
 
 Widget cuerpo() {
@@ -17,18 +16,9 @@ Widget cuerpo() {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 250,
-            ),
-            Builder(
-              builder: (context) {
-                return Text(
-                  'Añade una nota',
-                  style: GoogleFonts.alfaSlabOne(
-                      textStyle: const TextStyle(fontSize: 40)),
-                );
-              },
+          children: const [
+            SizedBox(
+              height: 200,
             ),
           ],
         ),
@@ -53,17 +43,18 @@ Widget cuerpo() {
           height: 10,
         ),
         SizedBox(
-          width: 270,
+          width: 100,
           child: StreamBuilder(
             stream: null,
             builder: (context, snapshot) {
-              return TextButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                    textStyle: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    )),
+              return ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  textStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 onPressed: () async {
                   Navigator.pop(
                     context,
@@ -72,9 +63,8 @@ Widget cuerpo() {
                   contenido.clear();
                 },
                 child: const Text(
-                  "Volver",
-                  style: TextStyle(
-                      fontSize: 20, color: Color.fromARGB(255, 255, 255, 255)),
+                  "Back",
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
               );
             },
@@ -95,10 +85,13 @@ String c = '';
 Widget campoTitulo() {
   return TextField(
     controller: titulo,
+    maxLength: 20,
+    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     decoration: const InputDecoration(
-      hintText: "Título",
-      fillColor: Colors.white,
+      hintText: "Tittle",
+      fillColor: Color.fromARGB(98, 0, 166, 255),
       filled: true,
+      hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
     ),
   );
 }
@@ -106,10 +99,12 @@ Widget campoTitulo() {
 Widget campoContenido() {
   return TextField(
     controller: contenido,
+    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     decoration: const InputDecoration(
-      hintText: "Contenido",
-      fillColor: Color.fromARGB(255, 255, 255, 255),
+      hintText: "Content",
+      fillColor: Color.fromARGB(98, 0, 166, 255),
       filled: true,
+      hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
     ),
   );
 }
@@ -118,11 +113,14 @@ Widget botonGuardar() {
   return StreamBuilder(
     stream: null,
     builder: (context, snapshot) {
-      return TextButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.black),
-          padding: MaterialStateProperty.all(
-            const EdgeInsets.symmetric(vertical: 5.0, horizontal: 100.0),
+      return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 4,
+          shadowColor: Colors.white,
+          primary: Colors.white,
+          padding: const EdgeInsets.only(
+            left: 30,
+            right: 30,
           ),
         ),
         onPressed: () async {
@@ -148,10 +146,10 @@ Widget botonGuardar() {
           );
         },
         child: const Text(
-          "Guardar",
+          "Save",
           style: TextStyle(
             fontSize: 20,
-            color: Colors.white,
+            color: Color.fromARGB(255, 0, 0, 0),
             fontWeight: FontWeight.bold,
           ),
         ),

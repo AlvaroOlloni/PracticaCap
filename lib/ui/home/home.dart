@@ -44,7 +44,7 @@ Widget notesText() {
           style: GoogleFonts.blackHanSans(
               textStyle: const TextStyle(fontSize: 30),
               fontSize: 50,
-              color: const Color.fromARGB(255, 0, 120, 255)),
+              color: Color.fromARGB(255, 63, 69, 255)),
         )
       ],
     ),
@@ -53,6 +53,7 @@ Widget notesText() {
 
 Widget notesAdd() {
   return Flexible(
+    fit: FlexFit.loose,
     child: Column(
       children: [botonAdd()],
     ),
@@ -61,6 +62,7 @@ Widget notesAdd() {
 
 Widget notesView() {
   return Flexible(
+    fit: FlexFit.loose,
     child: Column(
       children: [
         botonVer(),
@@ -71,8 +73,7 @@ Widget notesView() {
 
 Widget cardNotes() {
   return Flexible(
-    child: Container(
-      padding: const EdgeInsets.only(left: 10),
+    child: SizedBox(
       width: 320,
       height: 190,
       child: Card(
@@ -83,30 +84,30 @@ Widget cardNotes() {
         color: Colors.white,
         elevation: 20,
         child: Column(
-          children: <Widget>[
-            Column(
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ListTile(
-                  title: const Text(""),
-                  subtitle: notesText(),
-                  leading: const Icon(
-                    Icons.note_outlined,
-                    size: 80,
-                    color: Color.fromARGB(255, 0, 120, 255),
-                  ),
+                const Icon(
+                  Icons.note_outlined,
+                  size: 80,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    notesAdd(),
-                    notesView(),
-                  ],
-                )
+                notesText(),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                notesAdd(),
+                notesView(),
+              ],
+            ),
           ],
         ),
       ),

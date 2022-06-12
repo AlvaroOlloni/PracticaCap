@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mi_app/ui/add/widgets.dart';
 
 class AddScreen extends StatelessWidget {
@@ -7,6 +8,20 @@ class AddScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        shadowColor: Colors.black,
+        elevation: 10,
+        centerTitle: true,
+        title: Text(
+          "Add notes",
+          style: GoogleFonts.blackHanSans(
+            color: Colors.white,
+            fontSize: 40,
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 255, 0, 128),
+      ),
       body: cuerpo(),
     );
   }

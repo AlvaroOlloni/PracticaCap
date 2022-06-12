@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mi_app/ui/user/user.dart';
 import 'package:mi_app/ui/viewnotes/view.dart';
-
+import 'package:page_transition/page_transition.dart';
 import '../add/add.dart';
 
 Widget cuerpo() {
@@ -180,11 +180,10 @@ Widget botonVer() {
         height: 60,
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
-            backgroundColor: Colors.white,
-            primary: Colors.white,
+            backgroundColor: const Color.fromARGB(255, 207, 40, 231),
             side: const BorderSide(
-              color: Color.fromARGB(250, 21, 21, 21),
-              width: 3,
+              color: Color.fromARGB(255, 63, 69, 255),
+              width: 6,
             ),
             elevation: 4,
             shadowColor: const Color.fromARGB(255, 220, 52, 55),
@@ -195,15 +194,15 @@ Widget botonVer() {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => const ViewScreen(),
+              PageTransition(
+                type: PageTransitionType.rightToLeftWithFade,
+                child: const ViewScreen(),
               ),
             );
           },
           child: const Text(
             "View",
-            style: TextStyle(
-                fontSize: 25, color: Color.fromARGB(255, 0, 120, 255)),
+            style: TextStyle(fontSize: 25, color: Colors.white),
           ),
         ),
       );
@@ -220,29 +219,28 @@ Widget botonAdd() {
         height: 60,
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
-            backgroundColor: Colors.white,
-            primary: Colors.white,
+            backgroundColor: const Color.fromARGB(255, 207, 40, 231),
             side: const BorderSide(
-              color: Color.fromARGB(250, 21, 21, 21),
-              width: 3,
+              color: Color.fromARGB(255, 63, 69, 255),
+              width: 6,
             ),
             elevation: 4,
-            shadowColor: const Color.fromARGB(255, 220, 52, 55),
+            shadowColor: const Color.fromARGB(255, 161, 18, 55),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           ),
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => const AddScreen(),
+              PageTransition(
+                type: PageTransitionType.leftToRightWithFade,
+                child: const AddScreen(),
               ),
             );
           },
           child: const Text(
             "Add",
-            style: TextStyle(
-                fontSize: 25, color: Color.fromARGB(255, 0, 120, 255)),
+            style: TextStyle(fontSize: 25, color: Colors.white),
           ),
         ),
       );

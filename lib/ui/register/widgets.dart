@@ -19,48 +19,36 @@ Widget cuerpo() {
   return Container(
     decoration: const BoxDecoration(
       image: DecorationImage(
-        image: NetworkImage(
-            "https://i.pinimg.com/originals/30/79/a2/3079a2b472e0ea0aa2667a2994fe6689.jpg"),
+        image: AssetImage("fondo_home4.png"),
         fit: BoxFit.cover,
       ),
     ),
     child: Center(
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            titulo(),
-            const SizedBox(
-              height: 50.0,
-            ),
-            campoUserName(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            campoEmail(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            campoPassword(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            botonRegistrar(),
-            const SizedBox(
-              height: 10.0,
-            ),
-            botonVolver(),
-          ]),
-    ),
-  );
-}
-
-Widget titulo() {
-  return const Text(
-    "Regístrate",
-    style: TextStyle(
-      color: Colors.white,
-      fontSize: 35.0,
-      fontWeight: FontWeight.bold,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          const SizedBox(
+            height: 100.0,
+          ),
+          campoUserName(),
+          const SizedBox(
+            height: 10.0,
+          ),
+          campoEmail(),
+          const SizedBox(
+            height: 10.0,
+          ),
+          campoPassword(),
+          const SizedBox(
+            height: 10.0,
+          ),
+          botonRegistrar(),
+          const SizedBox(
+            height: 10.0,
+          ),
+          botonVolver(),
+        ],
+      ),
     ),
   );
 }
@@ -70,10 +58,12 @@ Widget campoUserName() {
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
     child: TextField(
       controller: userName,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       decoration: const InputDecoration(
-        hintText: "Nombre de usuario",
-        fillColor: Colors.white,
+        hintText: "Username",
+        fillColor: Color.fromARGB(99, 27, 38, 44),
         filled: true,
+        hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       ),
     ),
   );
@@ -83,11 +73,13 @@ Widget campoEmail() {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
     child: TextField(
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       controller: usuario,
       decoration: const InputDecoration(
         hintText: "Email",
-        fillColor: Colors.white,
+        fillColor: Color.fromARGB(99, 27, 38, 44),
         filled: true,
+        hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       ),
     ),
   );
@@ -97,12 +89,14 @@ Widget campoPassword() {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
     child: TextField(
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       controller: password,
       obscureText: true,
       decoration: const InputDecoration(
         hintText: "Password",
-        fillColor: Colors.white,
+        fillColor: Color.fromARGB(99, 27, 38, 44),
         filled: true,
+        hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       ),
     ),
   );
@@ -112,12 +106,11 @@ Widget botonRegistrar() {
   return StreamBuilder(
       stream: null,
       builder: (context, snapshot) {
-        return TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
-            padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 5.0, horizontal: 100.0),
-            ),
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 4,
+            shadowColor: Colors.white,
+            primary: const Color.fromARGB(255, 255, 123, 0),
           ),
           onPressed: () async {
             name = userName.text;
@@ -139,6 +132,9 @@ Widget botonRegistrar() {
                     builder: (context) => const NavScreen(),
                   ),
                 );
+                userName.clear();
+                usuario.clear();
+                password.clear();
               }
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
@@ -155,7 +151,7 @@ Widget botonRegistrar() {
             crearDataUsuario();
           },
           child: const Text(
-            "Entrar",
+            "Go",
             style: TextStyle(fontSize: 25, color: Colors.white),
           ),
         );
@@ -174,24 +170,22 @@ Widget botonVolver() {
   return StreamBuilder(
       stream: null,
       builder: (context, snapshot) {
-        return TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
-            padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 5.0, horizontal: 100.0),
-            ),
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 4,
+            shadowColor: Colors.white,
+            primary: const Color.fromARGB(255, 255, 123, 0),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Inicio(),
-              ),
-            );
+            Navigator.pop(context);
+            userName.clear();
+            usuario.clear();
+            password.clear();
           },
           child: const Text(
-            "Volver",
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            "Back",
+            style: TextStyle(
+                fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         );
       });
