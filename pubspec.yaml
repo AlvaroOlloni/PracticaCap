@@ -42,6 +42,7 @@ dependencies:
   flutter_alarm_clock: ^0.0.2
   page_transition: ^2.0.5
   firebase_storage: ^10.2.17
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -69,9 +70,16 @@ flutter:
     - fondo_home2.png
     - fondo_home3.jpg
     - fondo_home4.png
+    - fondo_home5.jpg
+    - fondo_home6.png
+    - fondo_fuerza.jpg
     - fuerza.jpg
     - cardio.jpg
     - diet.jpg
+    - bench_press.png
+    - human_back.png
+    - arm.png
+    - legs.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

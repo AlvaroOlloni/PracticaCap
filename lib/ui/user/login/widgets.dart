@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mi_app/ui/navigation/nav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mi_app/ui/user/register/register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final usuario = TextEditingController();
 
@@ -101,6 +102,9 @@ Widget botonEntrar() {
                   .signInWithEmailAndPassword(email: usu, password: pass);
               // ignore: avoid_print
               print("Usuario logueado");
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setString(usu, pass);
+
               if (FirebaseAuth.instance.currentUser != null) {
                 // ignore: use_build_context_synchronously
                 Navigator.pushAndRemoveUntil(

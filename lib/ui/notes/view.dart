@@ -61,7 +61,7 @@ Widget consultaFirestore() {
               borderRadius: BorderRadius.circular(10),
             ),
             color: Colors.yellow,
-            shadowColor: Color.fromARGB(255, 255, 255, 255),
+            shadowColor: Colors.white,
             elevation: 4,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,9 +87,10 @@ Widget consultaFirestore() {
                         onPressed: () {
                           try {
                             FirebaseFirestore.instance
-                                .collection(FirebaseAuth
-                                    .instance.currentUser!.email
-                                    .toString())
+                                .collection(
+                                  FirebaseAuth.instance.currentUser!.email
+                                      .toString(),
+                                )
                                 .doc(snapshot.data!.docs[index].id)
                                 .delete();
                           } catch (e) {

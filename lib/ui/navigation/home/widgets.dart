@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/add/add.dart';
 import 'package:mi_app/ui/navigation/account/user.dart';
-import 'package:mi_app/ui/viewnotes/view.dart';
+import 'package:mi_app/ui/notes/add/add.dart';
+import 'package:mi_app/ui/notes/view.dart';
 import 'package:page_transition/page_transition.dart';
 
 Widget cuerpo() {
@@ -180,13 +180,13 @@ Widget botonVer() {
         height: 60,
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 207, 40, 231),
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
             side: const BorderSide(
-              color: Color.fromARGB(255, 63, 69, 255),
+              color: Color.fromARGB(255, 0, 0, 0),
               width: 6,
             ),
             elevation: 4,
-            shadowColor: const Color.fromARGB(255, 220, 52, 55),
+            shadowColor: Color.fromARGB(255, 255, 255, 255),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -202,7 +202,7 @@ Widget botonVer() {
           },
           child: const Text(
             "View",
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            style: TextStyle(fontSize: 25, color: Color.fromARGB(255, 0, 0, 0)),
           ),
         ),
       );
@@ -219,13 +219,13 @@ Widget botonAdd() {
         height: 60,
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 207, 40, 231),
+            backgroundColor: Color.fromARGB(255, 255, 254, 255),
             side: const BorderSide(
-              color: Color.fromARGB(255, 63, 69, 255),
+              color: Color.fromARGB(255, 0, 0, 0),
               width: 6,
             ),
             elevation: 4,
-            shadowColor: const Color.fromARGB(255, 161, 18, 55),
+            shadowColor: Color.fromARGB(255, 255, 255, 255),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           ),
@@ -240,7 +240,7 @@ Widget botonAdd() {
           },
           child: const Text(
             "Add",
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            style: TextStyle(fontSize: 25, color: Color.fromARGB(255, 0, 0, 0)),
           ),
         ),
       );

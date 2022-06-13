@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("fondo_home3.jpg"),
+          image: AssetImage("fondo_home6.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -20,13 +20,15 @@ class Home extends StatelessWidget {
         children: [
           const SizedBox(
             height: 100,
-            child: Text(""),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               cardNotes(),
             ],
+          ),
+          const SizedBox(
+            height: 20,
           ),
           cardGym()
         ],
@@ -45,9 +47,10 @@ Widget notesText() {
         Text(
           "Notes",
           style: GoogleFonts.blackHanSans(
-              textStyle: const TextStyle(fontSize: 30),
-              fontSize: 50,
-              color: Color.fromARGB(255, 63, 69, 255)),
+            textStyle: const TextStyle(fontSize: 30),
+            fontSize: 50,
+            color: Color.fromARGB(255, 0, 0, 0),
+          ),
         ),
       ],
     ),
@@ -76,7 +79,14 @@ Widget notesView() {
 
 Widget cardNotes() {
   return Flexible(
-    child: SizedBox(
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        image: const DecorationImage(
+          image: AssetImage("fondo_home3.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
       width: 320,
       height: 190,
       child: Card(
@@ -84,7 +94,7 @@ Widget cardNotes() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        color: Color.fromARGB(255, 255, 255, 255),
+        color: Color.fromARGB(0, 255, 255, 255),
         elevation: 20,
         child: Column(
           children: [
@@ -120,15 +130,22 @@ Widget cardNotes() {
 
 Widget cardGym() {
   return Flexible(
-    child: SizedBox(
+    child: Container(
       width: 250,
       height: 190,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        image: const DecorationImage(
+          image: AssetImage("fondo_home3.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Card(
         shadowColor: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        color: Colors.white,
+        color: Color.fromARGB(0, 255, 255, 255),
         elevation: 20,
         child: Column(
           children: [
@@ -150,7 +167,7 @@ Widget cardGym() {
                   style: GoogleFonts.blackHanSans(
                       textStyle: const TextStyle(fontSize: 30),
                       fontSize: 50,
-                      color: const Color.fromARGB(255, 63, 69, 255)),
+                      color: Color.fromARGB(255, 0, 0, 0)),
                 ),
               ],
             ),
@@ -190,13 +207,13 @@ Widget botonVerGym() {
         height: 60,
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 207, 40, 231),
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
             side: const BorderSide(
-              color: Color.fromARGB(255, 63, 69, 255),
+              color: Color.fromARGB(255, 0, 0, 0),
               width: 6,
             ),
             elevation: 4,
-            shadowColor: const Color.fromARGB(255, 220, 52, 55),
+            shadowColor: Color.fromARGB(255, 255, 255, 255),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -212,7 +229,7 @@ Widget botonVerGym() {
           },
           child: const Text(
             "Go",
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            style: TextStyle(fontSize: 25, color: Color.fromARGB(255, 0, 0, 0)),
           ),
         ),
       );

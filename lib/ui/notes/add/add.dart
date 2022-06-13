@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mi_app/ui/add/widgets.dart';
+import 'package:mi_app/ui/notes/add/widgets.dart';
 
 class AddScreen extends StatelessWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class AddScreen extends StatelessWidget {
             fontSize: 40,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 255, 0, 128),
+        backgroundColor: const Color.fromARGB(255, 255, 0, 128),
       ),
       body: cuerpo(),
     );
