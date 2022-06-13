@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/user/user.dart';
-
-import 'home/home.dart';
-import 'login/login.dart';
+import 'package:mi_app/ui/navigation/account/user.dart';
+import 'package:mi_app/ui/navigation/home/home.dart';
+import 'package:mi_app/ui/user/login/login.dart';
 
 class NavScreen extends StatefulWidget {
   const NavScreen({Key? key}) : super(key: key);

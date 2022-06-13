@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/user/user.dart';
+import 'package:mi_app/ui/add/add.dart';
+import 'package:mi_app/ui/navigation/account/user.dart';
 import 'package:mi_app/ui/viewnotes/view.dart';
 import 'package:page_transition/page_transition.dart';
-import '../add/add.dart';
 
 Widget cuerpo() {
   return Column(

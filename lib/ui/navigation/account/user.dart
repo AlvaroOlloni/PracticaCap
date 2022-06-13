@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/user/widgets.dart';
+import 'package:mi_app/ui/navigation/account/widgets.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);

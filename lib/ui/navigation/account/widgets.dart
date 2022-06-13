@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/login/login.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:mi_app/ui/user/login/login.dart';
 
 String email = FirebaseAuth.instance.currentUser!.email.toString();
 
 final userName = TextEditingController();
+
+final storageRef = FirebaseStorage.instance.ref();
 
 Widget cuerpo() {
   return Container(
@@ -19,7 +22,7 @@ Widget cuerpo() {
     child: Column(
       children: <Widget>[
         const SizedBox(
-          height: 250,
+          height: 50,
         ),
         SizedBox(
           child: cardName(),
@@ -291,6 +294,9 @@ Card cardName() {
               ],
             ),
           ],
+        ),
+        const SizedBox(
+          height: 5,
         ),
         Row(
           children: [

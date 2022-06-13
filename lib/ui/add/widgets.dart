@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/nav.dart';
+import 'package:mi_app/ui/navigation/nav.dart';
 
 Widget cuerpo() {
   return Container(

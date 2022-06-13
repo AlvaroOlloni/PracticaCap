@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mi_app/main.dart';
+import 'package:mi_app/ui/navigation/nav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mi_app/ui/login/login.dart';
-import 'package:mi_app/ui/nav.dart';
-
-final userName = TextEditingController();
+import 'package:mi_app/ui/user/register/register.dart';
 
 final usuario = TextEditingController();
 
 final password = TextEditingController();
 
-String name = ' ';
 String usu = '';
 String pass = '';
 
@@ -28,53 +23,36 @@ Widget cuerpo() {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           const SizedBox(
-            height: 100.0,
+            height: 50.0,
           ),
-          campoUserName(),
+          const SizedBox(
+            height: 50.0,
+          ),
+          campoUsuario(),
           const SizedBox(
             height: 10.0,
           ),
-          campoEmail(),
+          campoContrasena(),
           const SizedBox(
             height: 10.0,
           ),
-          campoPassword(),
+          botonEntrar(),
           const SizedBox(
             height: 10.0,
           ),
-          botonRegistrar(),
-          const SizedBox(
-            height: 10.0,
-          ),
-          botonVolver(),
+          botonAbrirRegistrar(),
         ],
       ),
     ),
   );
 }
 
-Widget campoUserName() {
+Widget campoUsuario() {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
     child: TextField(
-      controller: userName,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      decoration: const InputDecoration(
-        hintText: "Username",
-        fillColor: Color.fromARGB(99, 27, 38, 44),
-        filled: true,
-        hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-      ),
-    ),
-  );
-}
-
-Widget campoEmail() {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-    child: TextField(
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       controller: usuario,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       decoration: const InputDecoration(
         hintText: "Email",
         fillColor: Color.fromARGB(99, 27, 38, 44),
@@ -85,13 +63,13 @@ Widget campoEmail() {
   );
 }
 
-Widget campoPassword() {
+Widget campoContrasena() {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
     child: TextField(
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       controller: password,
       obscureText: true,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       decoration: const InputDecoration(
         hintText: "Password",
         fillColor: Color.fromARGB(99, 27, 38, 44),
@@ -102,7 +80,7 @@ Widget campoPassword() {
   );
 }
 
-Widget botonRegistrar() {
+Widget botonEntrar() {
   return StreamBuilder(
       stream: null,
       builder: (context, snapshot) {
@@ -113,7 +91,6 @@ Widget botonRegistrar() {
             primary: const Color.fromARGB(255, 255, 123, 0),
           ),
           onPressed: () async {
-            name = userName.text;
             usu = usuario.text;
             pass = password.text;
 
@@ -121,18 +98,18 @@ Widget botonRegistrar() {
             //Cambiar por LogIn y poner este método en Register.dart
             try {
               await FirebaseAuth.instance
-                  .createUserWithEmailAndPassword(email: usu, password: pass);
+                  .signInWithEmailAndPassword(email: usu, password: pass);
               // ignore: avoid_print
-              print("Usuario registrado");
+              print("Usuario logueado");
               if (FirebaseAuth.instance.currentUser != null) {
                 // ignore: use_build_context_synchronously
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const NavScreen(),
                   ),
+                  (route) => false,
                 );
-                userName.clear();
                 usuario.clear();
                 password.clear();
               }
@@ -148,25 +125,27 @@ Widget botonRegistrar() {
               // ignore: avoid_print
               print(e);
             }
-            crearDataUsuario();
+
+            /*
+          FirebaseFirestore db;
+  
+          final usuarios = <String, String>{
+            "name": usu,
+            "state": "CA",
+            "country": "USA"
+          };
+          */
           },
           child: const Text(
             "Go",
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            style: TextStyle(
+                fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         );
       });
 }
 
-void crearDataUsuario() {
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-  final data = <String, String>{"Username": name};
-
-  users.doc(usu).set(data);
-}
-
-Widget botonVolver() {
+Widget botonAbrirRegistrar() {
   return StreamBuilder(
       stream: null,
       builder: (context, snapshot) {
@@ -177,13 +156,17 @@ Widget botonVolver() {
             primary: const Color.fromARGB(255, 255, 123, 0),
           ),
           onPressed: () {
-            Navigator.pop(context);
-            userName.clear();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RegisterScreen(),
+              ),
+            );
             usuario.clear();
             password.clear();
           },
           child: const Text(
-            "Back",
+            "Register",
             style: TextStyle(
                 fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
           ),
