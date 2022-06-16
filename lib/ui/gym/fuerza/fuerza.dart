@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_const
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mi_app/ui/gym/fuerza/mostrarFuerza.dart';
@@ -125,195 +127,249 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                   // first tab bar view widget
                   Container(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
+                    child: Column(
                       children: [
+                        Flexible(
+                          child: ListView(
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Bench Press",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                    value: benchPressSwitched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          benchPressSwitched = value;
+                                          print(benchPressSwitched);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Push Ups",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: pushUpsSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        pushUpsSwitched = value;
+                                        print(benchPressSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "DUMBBELL FLYES",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: dumbellSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        dumbellSwitched = value;
+                                        print(dumbellSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Incline Bench Press",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: inclineSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        inclineSwitched = value;
+                                        print(inclineSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Decline Bench Press",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: declineSwitched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          declineSwitched = value;
+                                          print(declineSwitched);
+                                        },
+                                      );
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Dips",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: dipsSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        dipsSwitched = value;
+                                        print(dipsSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Cable chest",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: cableSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        cableSwitched = value;
+                                        print(cableSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              )
+                            ],
+                          ),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Bench Press",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                              value: benchPressSwitched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    benchPressSwitched = value;
-                                    print(benchPressSwitched);
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Push Ups",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: pushUpsSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  pushUpsSwitched = value;
-                                  print(benchPressSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
+                            SizedBox(
+                              height: 50,
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: const Color.fromARGB(255, 4, 0, 255),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  final data = <String, bool>{
+                                    "Bench Press": benchPressSwitched,
+                                    "Push Ups": pushUpsSwitched,
+                                    "Dumbbell Flyes": dumbellSwitched,
+                                    "Incline": inclineSwitched,
+                                    "Decline": declineSwitched,
+                                    "Dips": dipsSwitched,
+                                    "Cable Chest": cableSwitched
+                                  };
+
+                                  FirebaseFirestore.instance
+                                      .collection("Pecho")
+                                      .doc(FirebaseAuth
+                                          .instance.currentUser!.email
+                                          .toString())
+                                      .set(data);
+
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MostrarFuerzaScreen()));
+                                },
+                                child: Text(
+                                  "Save",
+                                  style: GoogleFonts.blackHanSans(
+                                    fontSize: 40,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "DUMBBELL FLYES",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: dumbellSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  dumbellSwitched = value;
-                                  print(dumbellSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Incline Bench Press",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: inclineSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  inclineSwitched = value;
-                                  print(inclineSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Decline Bench Press",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: declineSwitched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    declineSwitched = value;
-                                    print(declineSwitched);
-                                  },
-                                );
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Dips",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: dipsSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  dipsSwitched = value;
-                                  print(dipsSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Cable chest",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: cableSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  cableSwitched = value;
-                                  print(cableSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        )
                       ],
                     ),
                   ),
@@ -321,638 +377,757 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                   // second tab bar view widget
                   Container(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
+                    child: Column(
                       children: [
+                        Flexible(
+                          child: ListView(
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Seated Row",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                    value: seatedSwitched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          seatedSwitched = value;
+                                          print(seatedSwitched);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Pull-Down",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: pullSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        pullSwitched = value;
+                                        print(pullSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Single-Arm Dumbbell Row",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: singleArmSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        singleArmSwitched = value;
+                                        print(singleArmSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Pull ups",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: pullUpsSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        pullUpsSwitched = value;
+                                        print(pullUpsSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Dumbell pull over",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: pullOverSwitched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          pullOverSwitched = value;
+                                          print(pullOverSwitched);
+                                        },
+                                      );
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Dead lift",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: deadLiftSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        deadLiftSwitched = value;
+                                        print(deadLiftSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Pullovers",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: pullOversSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        pullOversSwitched = value;
+                                        print(pullOversSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              )
+                            ],
+                          ),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Seated Row",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                              value: seatedSwitched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    seatedSwitched = value;
-                                    print(seatedSwitched);
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Pull-Down",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: pullSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  pullSwitched = value;
-                                  print(pullSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
+                            SizedBox(
+                              height: 50,
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: const Color.fromARGB(255, 4, 0, 255),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  final data = <String, bool>{
+                                    "Seated Row": seatedSwitched,
+                                    "Pull Down": pullSwitched,
+                                    "Single Arm": singleArmSwitched,
+                                    "Pull Ups": pullUpsSwitched,
+                                    "Dumbbell Pull Over": pullOverSwitched,
+                                    "Dead Lift": deadLiftSwitched,
+                                    "Pull over": pullOversSwitched
+                                  };
+
+                                  FirebaseFirestore.instance
+                                      .collection("Espalda")
+                                      .doc(FirebaseAuth
+                                          .instance.currentUser!.email
+                                          .toString())
+                                      .set(data);
+
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MostrarFuerzaScreen()));
+                                },
+                                child: Text(
+                                  "Save",
+                                  style: GoogleFonts.blackHanSans(
+                                    fontSize: 40,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Single-Arm Dumbbell Row",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: singleArmSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  singleArmSwitched = value;
-                                  print(singleArmSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Pull ups",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: pullUpsSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  pullUpsSwitched = value;
-                                  print(pullUpsSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Dumbell pull over",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: pullOverSwitched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    pullOverSwitched = value;
-                                    print(pullOverSwitched);
-                                  },
-                                );
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Dead lift",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: deadLiftSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  deadLiftSwitched = value;
-                                  print(deadLiftSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Pullovers",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: pullOversSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  pullOversSwitched = value;
-                                  print(pullOversSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        )
                       ],
                     ),
                   ),
                   // third tab bar view widget
                   Container(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
+                    child: Column(
                       children: [
+                        Flexible(
+                          child: ListView(
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Barbell biceps curl",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                    value: barbellSwitched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          barbellSwitched = value;
+                                          print(barbellSwitched);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Preacher biceps curl",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: preacherSwitched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          preacherSwitched = value;
+                                          print(preacherSwitched);
+                                        },
+                                      );
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Cable biceps curl",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: bicepsCurlSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        bicepsCurlSwitched = value;
+                                        print(bicepsCurlSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Cable triceps pushdown",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: cableTricepsSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        cableTricepsSwitched = value;
+                                        print(cableTricepsSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Dips",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: tricepsDipsSwitched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          tricepsDipsSwitched = value;
+                                          print(tricepsDipsSwitched);
+                                        },
+                                      );
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Overhead Triceps Extensions",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: overHeadSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        overHeadSwitched = value;
+                                        print(overHeadSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Close Grip Bench Presses",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: closeGripSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        closeGripSwitched = value;
+                                        print(closeGripSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              )
+                            ],
+                          ),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Barbell biceps curl",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                              value: barbellSwitched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    barbellSwitched = value;
-                                    print(barbellSwitched);
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Preacher biceps curl",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: preacherSwitched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    preacherSwitched = value;
-                                    print(preacherSwitched);
-                                  },
-                                );
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
+                            SizedBox(
+                              height: 50,
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: const Color.fromARGB(255, 4, 0, 255),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  final data = <String, bool>{
+                                    "Barbell biceps curl": bicepsCurlSwitched,
+                                    "Preacher biceps cuurl": preacherSwitched,
+                                    "Cable biceps curl": cableSwitched,
+                                    "Cable Triceps": cableTricepsSwitched,
+                                    "Dips": dipsSwitched,
+                                    "Overhead triceps": overHeadSwitched,
+                                    "Close grip bench press": closeGripSwitched
+                                  };
+
+                                  FirebaseFirestore.instance
+                                      .collection("Brazo")
+                                      .doc(FirebaseAuth
+                                          .instance.currentUser!.email
+                                          .toString())
+                                      .set(data);
+
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MostrarFuerzaScreen()));
+                                },
+                                child: Text(
+                                  "Save",
+                                  style: GoogleFonts.blackHanSans(
+                                    fontSize: 40,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Cable biceps curl",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: bicepsCurlSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  bicepsCurlSwitched = value;
-                                  print(bicepsCurlSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Cable triceps pushdown",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: cableTricepsSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  cableTricepsSwitched = value;
-                                  print(cableTricepsSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Dips",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: tricepsDipsSwitched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    tricepsDipsSwitched = value;
-                                    print(tricepsDipsSwitched);
-                                  },
-                                );
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Overhead Triceps Extensions",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: overHeadSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  overHeadSwitched = value;
-                                  print(overHeadSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Close Grip Bench Presses",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: closeGripSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  closeGripSwitched = value;
-                                  print(closeGripSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        )
                       ],
                     ),
                   ),
                   // Fourth tab bar view widge
                   Container(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
+                    child: Column(
                       children: [
+                        Flexible(
+                          child: ListView(
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Deadlift",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                    value: deadLift2Switched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          deadLift2Switched = value;
+                                          print(deadLift2Switched);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Leg press",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: legPressSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        legPressSwitched = value;
+                                        print(legPressSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Seated hamstring curl",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: hamstringSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        hamstringSwitched = value;
+                                        print(hamstringSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Seated leg extension",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: legExtensionSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        legExtensionSwitched = value;
+                                        print(legExtensionSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Dumbbell lunge",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: lungeSwitched,
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          lungeSwitched = value;
+                                          print(lungeSwitched);
+                                        },
+                                      );
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Squats",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: squatsSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        squatsSwitched = value;
+                                        print(squatsSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Single Leg Curl",
+                                    style: GoogleFonts.blackHanSans(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  Switch(
+                                    value: singleLegSwitched,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        singleLegSwitched = value;
+                                        print(singleLegSwitched);
+                                      });
+                                    },
+                                    activeTrackColor: Colors.white,
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.deepOrange,
+                                    inactiveThumbColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              )
+                            ],
+                          ),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Deadlift",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                              value: deadLift2Switched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    deadLift2Switched = value;
-                                    print(deadLift2Switched);
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Leg press",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: legPressSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  legPressSwitched = value;
-                                  print(legPressSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
+                            SizedBox(
+                              height: 50,
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: const Color.fromARGB(255, 4, 0, 255),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  final data = <String, bool>{
+                                    "DeadLift": deadLift2Switched,
+                                    "Leg press": legPressSwitched,
+                                    "Seated hamstring curl": hamstringSwitched,
+                                    "Seated leg extension":
+                                        legExtensionSwitched,
+                                    "Dumbbell lunge": lungeSwitched,
+                                    "Squats": squatsSwitched,
+                                    "Single leg curl": singleLegSwitched,
+                                  };
+
+                                  FirebaseFirestore.instance
+                                      .collection("Pierna")
+                                      .doc(FirebaseAuth
+                                          .instance.currentUser!.email
+                                          .toString())
+                                      .set(data);
+
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MostrarFuerzaScreen()));
+                                },
+                                child: Text(
+                                  "Save",
+                                  style: GoogleFonts.blackHanSans(
+                                    fontSize: 40,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Seated hamstring curl",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: hamstringSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  hamstringSwitched = value;
-                                  print(hamstringSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Seated leg extension",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: legExtensionSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  legExtensionSwitched = value;
-                                  print(legExtensionSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Dumbbell lunge",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: lungeSwitched,
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    lungeSwitched = value;
-                                    print(lungeSwitched);
-                                  },
-                                );
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Squats",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: squatsSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  squatsSwitched = value;
-                                  print(squatsSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Single Leg Curl",
-                              style: GoogleFonts.blackHanSans(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                            Switch(
-                              value: singleLegSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  singleLegSwitched = value;
-                                  print(singleLegSwitched);
-                                });
-                              },
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                              activeColor: Colors.deepOrange,
-                              inactiveThumbColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        )
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 50,
-                  width: 150,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(255, 4, 0, 255),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    onPressed: () {
-                      Switched sw1 = Switched(
-                          benchPressSwitched,
-                          pushUpsSwitched,
-                          dumbellSwitched,
-                          inclineSwitched,
-                          declineSwitched,
-                          dipsSwitched,
-                          cableSwitched);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MostrarFuerzaScreen(
-                                  benchPressSwitched,
-                                  pushUpsSwitched,
-                                  dumbellSwitched,
-                                  inclineSwitched,
-                                  declineSwitched,
-                                  dipsSwitched,
-                                  cableSwitched)));
-                    },
-                    child: Text(
-                      "Save",
-                      style: GoogleFonts.blackHanSans(
-                        fontSize: 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
             const SizedBox(
               height: 10,
             ),
