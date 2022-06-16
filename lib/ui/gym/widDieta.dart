@@ -5,39 +5,40 @@ import '../navigation/nav.dart';
 
 Widget botonDieta() {
   return StreamBuilder(
-      stream: null,
-      builder: (context, snapshot) {
-        return SizedBox(
-          width: 400,
-          height: 176,
-          child: OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              backgroundColor: Color.fromARGB(0, 255, 255, 255),
-              //backgroundColor: const Color.fromARGB(255, 207, 40, 231),
-              side: const BorderSide(
-                color: Color.fromARGB(255, 255, 255, 255),
-                width: 2,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
+    stream: null,
+    builder: (context, snapshot) {
+      return SizedBox(
+        width: 400,
+        height: 176,
+        child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            backgroundColor: Color.fromARGB(0, 255, 255, 255),
+            //backgroundColor: const Color.fromARGB(255, 207, 40, 231),
+            side: const BorderSide(
+              color: Color.fromARGB(255, 255, 255, 255),
+              width: 2,
             ),
-            onPressed: () async {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NavScreen(),
-                ),
-              );
-            },
-            child: Text(
-              "Strength",
-              style: GoogleFonts.blackHanSans(
-                  fontSize: 30, color: Color.fromARGB(0, 0, 0, 0)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
             ),
           ),
-        );
-      });
+          onPressed: () async {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NavScreen(),
+              ),
+            );
+          },
+          child: Text(
+            "Strength",
+            style: GoogleFonts.blackHanSans(
+                fontSize: 30, color: Color.fromARGB(0, 0, 0, 0)),
+          ),
+        ),
+      );
+    },
+  );
 }
 
 Widget cardDieta() {

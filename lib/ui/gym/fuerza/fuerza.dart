@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mi_app/ui/gym/fuerza/mostrarFuerza.dart';
 import 'package:mi_app/ui/navigation/nav.dart';
 
 class FuerzaScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class FuerzaScreen extends StatefulWidget {
 }
 
 class _FuerzaScreenState extends State<FuerzaScreen> {
+  //Variables primer ListView
   bool benchPressSwitched = false;
   bool pushUpsSwitched = false;
   bool dumbellSwitched = false;
@@ -17,6 +19,30 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
   bool declineSwitched = false;
   bool dipsSwitched = false;
   bool cableSwitched = false;
+  //Variables segundo ListView
+  bool seatedSwitched = false;
+  bool pullSwitched = false;
+  bool singleArmSwitched = false;
+  bool pullUpsSwitched = false;
+  bool pullOverSwitched = false;
+  bool deadLiftSwitched = false;
+  bool pullOversSwitched = false;
+  //Variables tercer ListView
+  bool barbellSwitched = false;
+  bool preacherSwitched = false;
+  bool bicepsCurlSwitched = false;
+  bool cableTricepsSwitched = false;
+  bool tricepsDipsSwitched = false;
+  bool overHeadSwitched = false;
+  bool closeGripSwitched = false;
+  //Variables cuarto ListView
+  bool deadLift2Switched = false;
+  bool legPressSwitched = false;
+  bool hamstringSwitched = false;
+  bool legExtensionSwitched = false;
+  bool lungeSwitched = false;
+  bool squatsSwitched = false;
+  bool singleLegSwitched = false;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,11 +55,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
             'Strength',
             style: GoogleFonts.blackHanSans(
               fontSize: 40,
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: Colors.white,
             ),
           ),
           centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: Colors.black,
           elevation: 0,
           // give the app bar rounded corners
           shape: const RoundedRectangleBorder(
@@ -292,7 +318,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                     ),
                   ),
 
-                  // second tab bar viiew widget
+                  // second tab bar view widget
                   Container(
                     color: Color.fromARGB(255, 0, 0, 0),
                     child: ListView(
@@ -311,12 +337,12 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                               inactiveTrackColor: Colors.grey,
                               activeColor: Colors.deepOrange,
                               inactiveThumbColor: Colors.white,
-                              value: benchPressSwitched,
+                              value: seatedSwitched,
                               onChanged: (value) {
                                 setState(
                                   () {
-                                    benchPressSwitched = value;
-                                    print(benchPressSwitched);
+                                    seatedSwitched = value;
+                                    print(seatedSwitched);
                                   },
                                 );
                               },
@@ -335,11 +361,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: pushUpsSwitched,
+                              value: pullSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  pushUpsSwitched = value;
-                                  print(benchPressSwitched);
+                                  pullSwitched = value;
+                                  print(pullSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -361,11 +387,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: dumbellSwitched,
+                              value: singleArmSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  dumbellSwitched = value;
-                                  print(dumbellSwitched);
+                                  singleArmSwitched = value;
+                                  print(singleArmSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -387,11 +413,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: inclineSwitched,
+                              value: pullUpsSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  inclineSwitched = value;
-                                  print(inclineSwitched);
+                                  pullUpsSwitched = value;
+                                  print(pullUpsSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -413,12 +439,12 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: declineSwitched,
+                              value: pullOverSwitched,
                               onChanged: (value) {
                                 setState(
                                   () {
-                                    declineSwitched = value;
-                                    print(declineSwitched);
+                                    pullOverSwitched = value;
+                                    print(pullOverSwitched);
                                   },
                                 );
                               },
@@ -441,11 +467,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: dipsSwitched,
+                              value: deadLiftSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  dipsSwitched = value;
-                                  print(dipsSwitched);
+                                  deadLiftSwitched = value;
+                                  print(deadLiftSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -467,11 +493,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: cableSwitched,
+                              value: pullOversSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  cableSwitched = value;
-                                  print(cableSwitched);
+                                  pullOversSwitched = value;
+                                  print(pullOversSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -506,12 +532,12 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                               inactiveTrackColor: Colors.grey,
                               activeColor: Colors.deepOrange,
                               inactiveThumbColor: Colors.white,
-                              value: benchPressSwitched,
+                              value: barbellSwitched,
                               onChanged: (value) {
                                 setState(
                                   () {
-                                    benchPressSwitched = value;
-                                    print(benchPressSwitched);
+                                    barbellSwitched = value;
+                                    print(barbellSwitched);
                                   },
                                 );
                               },
@@ -530,12 +556,12 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: pushUpsSwitched,
+                              value: preacherSwitched,
                               onChanged: (value) {
                                 setState(
                                   () {
-                                    pushUpsSwitched = value;
-                                    print(benchPressSwitched);
+                                    preacherSwitched = value;
+                                    print(preacherSwitched);
                                   },
                                 );
                               },
@@ -558,11 +584,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: dumbellSwitched,
+                              value: bicepsCurlSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  dumbellSwitched = value;
-                                  print(dumbellSwitched);
+                                  bicepsCurlSwitched = value;
+                                  print(bicepsCurlSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -584,11 +610,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: inclineSwitched,
+                              value: cableTricepsSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  inclineSwitched = value;
-                                  print(inclineSwitched);
+                                  cableTricepsSwitched = value;
+                                  print(cableTricepsSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -610,12 +636,12 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: declineSwitched,
+                              value: tricepsDipsSwitched,
                               onChanged: (value) {
                                 setState(
                                   () {
-                                    declineSwitched = value;
-                                    print(declineSwitched);
+                                    tricepsDipsSwitched = value;
+                                    print(tricepsDipsSwitched);
                                   },
                                 );
                               },
@@ -638,11 +664,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: dipsSwitched,
+                              value: overHeadSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  dipsSwitched = value;
-                                  print(dipsSwitched);
+                                  overHeadSwitched = value;
+                                  print(overHeadSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -664,11 +690,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: cableSwitched,
+                              value: closeGripSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  cableSwitched = value;
-                                  print(cableSwitched);
+                                  closeGripSwitched = value;
+                                  print(closeGripSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -684,6 +710,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                       ],
                     ),
                   ),
+                  // Fourth tab bar view widge
                   Container(
                     color: Color.fromARGB(255, 0, 0, 0),
                     child: ListView(
@@ -702,12 +729,12 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                               inactiveTrackColor: Colors.grey,
                               activeColor: Colors.deepOrange,
                               inactiveThumbColor: Colors.white,
-                              value: benchPressSwitched,
+                              value: deadLift2Switched,
                               onChanged: (value) {
                                 setState(
                                   () {
-                                    benchPressSwitched = value;
-                                    print(benchPressSwitched);
+                                    deadLift2Switched = value;
+                                    print(deadLift2Switched);
                                   },
                                 );
                               },
@@ -726,11 +753,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: pushUpsSwitched,
+                              value: legPressSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  pushUpsSwitched = value;
-                                  print(benchPressSwitched);
+                                  legPressSwitched = value;
+                                  print(legPressSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -752,11 +779,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: dumbellSwitched,
+                              value: hamstringSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  dumbellSwitched = value;
-                                  print(dumbellSwitched);
+                                  hamstringSwitched = value;
+                                  print(hamstringSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -778,11 +805,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: inclineSwitched,
+                              value: legExtensionSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  inclineSwitched = value;
-                                  print(inclineSwitched);
+                                  legExtensionSwitched = value;
+                                  print(legExtensionSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -804,12 +831,12 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: declineSwitched,
+                              value: lungeSwitched,
                               onChanged: (value) {
                                 setState(
                                   () {
-                                    declineSwitched = value;
-                                    print(declineSwitched);
+                                    lungeSwitched = value;
+                                    print(lungeSwitched);
                                   },
                                 );
                               },
@@ -832,11 +859,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: dipsSwitched,
+                              value: squatsSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  dipsSwitched = value;
-                                  print(dipsSwitched);
+                                  squatsSwitched = value;
+                                  print(squatsSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -858,11 +885,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   fontSize: 20, color: Colors.white),
                             ),
                             Switch(
-                              value: cableSwitched,
+                              value: singleLegSwitched,
                               onChanged: (value) {
                                 setState(() {
-                                  cableSwitched = value;
-                                  print(cableSwitched);
+                                  singleLegSwitched = value;
+                                  print(singleLegSwitched);
                                 });
                               },
                               activeTrackColor: Colors.white,
@@ -895,8 +922,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                       ),
                     ),
                     onPressed: () {
-                      //Navigator.pop(context);
-                      Switched sw = Switched(
+                      Switched sw1 = Switched(
                           benchPressSwitched,
                           pushUpsSwitched,
                           dumbellSwitched,
@@ -904,6 +930,17 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                           declineSwitched,
                           dipsSwitched,
                           cableSwitched);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MostrarFuerzaScreen(
+                                  benchPressSwitched,
+                                  pushUpsSwitched,
+                                  dumbellSwitched,
+                                  inclineSwitched,
+                                  declineSwitched,
+                                  dipsSwitched,
+                                  cableSwitched)));
                     },
                     child: Text(
                       "Save",
@@ -939,7 +976,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                       "Go Back",
                       style: GoogleFonts.blackHanSans(
                         fontSize: 40,
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -954,13 +991,13 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
 }
 
 class Switched {
-  bool benchSw = false;
-  bool pushSw = false;
-  bool dumbellSw = false;
-  bool inclineSw = false;
-  bool declineSw = false;
-  bool dipsSw = false;
-  bool cableSw = false;
-  Switched(this.benchSw, this.pushSw, this.dumbellSw, this.inclineSw,
-      this.declineSw, this.dipsSw, this.cableSw);
+  bool Sw1 = false;
+  bool Sw2 = false;
+  bool Sw3 = false;
+  bool Sw4 = false;
+  bool Sw5 = false;
+  bool Sw6 = false;
+  bool Sw7 = false;
+  Switched(
+      this.Sw1, this.Sw2, this.Sw3, this.Sw4, this.Sw5, this.Sw6, this.Sw7);
 }

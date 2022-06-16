@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mi_app/ui/gym/cardio/cardio.dart';
 
 import '../navigation/nav.dart';
 
@@ -26,7 +27,7 @@ Widget botonCardio() {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const NavScreen(),
+                  builder: (context) => CardioScreen(),
                 ),
               );
             },
