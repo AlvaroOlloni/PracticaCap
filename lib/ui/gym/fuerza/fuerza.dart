@@ -22,16 +22,18 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Colors.black,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text(
             'Strength',
             style: GoogleFonts.blackHanSans(
-                fontSize: 24, color: Color.fromARGB(255, 255, 255, 255)),
+              fontSize: 40,
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
           ),
           centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 255, 0, 0),
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
           elevation: 0,
           // give the app bar rounded corners
           shape: const RoundedRectangleBorder(
@@ -46,14 +48,15 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
             // construct the profile details widget here
             Container(
               height: 245,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
+              decoration: BoxDecoration(
+                image: const DecorationImage(
                   image: AssetImage("fuerza.jpg"),
                 ),
+                borderRadius: BorderRadius.circular(300.0),
               ),
             ),
 
-            // the tab bar with two items
+            // the tab bar with four items
             SizedBox(
               height: 50,
               child: AppBar(
@@ -95,25 +98,32 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                 children: [
                   // first tab bar view widget
                   Container(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: Color.fromARGB(255, 0, 0, 0),
                     child: ListView(
                       scrollDirection: Axis.vertical,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text("Bench Press"),
+                            Text(
+                              "Bench Press",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
                             Switch(
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
                               value: benchPressSwitched,
                               onChanged: (value) {
-                                setState(() {
-                                  benchPressSwitched = value;
-                                  print(benchPressSwitched);
-                                });
+                                setState(
+                                  () {
+                                    benchPressSwitched = value;
+                                    print(benchPressSwitched);
+                                  },
+                                );
                               },
-                              activeTrackColor: Color.fromARGB(255, 0, 17, 255),
-                              activeColor: Colors.black,
-                              inactiveThumbColor: Colors.black,
                             ),
                           ],
                         ),
@@ -123,7 +133,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text("Push Ups"),
+                            Text(
+                              "Push Ups",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
                             Switch(
                               value: pushUpsSwitched,
                               onChanged: (value) {
@@ -132,9 +146,10 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   print(benchPressSwitched);
                                 });
                               },
-                              activeTrackColor: Color.fromARGB(255, 0, 17, 255),
-                              activeColor: Colors.black,
-                              inactiveThumbColor: Colors.black,
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
                             ),
                           ],
                         ),
@@ -144,7 +159,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("DUMBBELL FLYES"),
+                            Text(
+                              "DUMBBELL FLYES",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
                             Switch(
                               value: dumbellSwitched,
                               onChanged: (value) {
@@ -153,9 +172,10 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   print(dumbellSwitched);
                                 });
                               },
-                              activeTrackColor: Color.fromARGB(255, 0, 17, 255),
-                              activeColor: Colors.black,
-                              inactiveThumbColor: Colors.black,
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
                             ),
                           ],
                         ),
@@ -165,7 +185,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Incline Bench Press"),
+                            Text(
+                              "Incline Bench Press",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
                             Switch(
                               value: inclineSwitched,
                               onChanged: (value) {
@@ -174,9 +198,10 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   print(inclineSwitched);
                                 });
                               },
-                              activeTrackColor: Color.fromARGB(255, 0, 17, 255),
-                              activeColor: Colors.black,
-                              inactiveThumbColor: Colors.black,
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
                             ),
                           ],
                         ),
@@ -186,18 +211,25 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Decline Bench Press"),
+                            Text(
+                              "Decline Bench Press",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
                             Switch(
                               value: declineSwitched,
                               onChanged: (value) {
-                                setState(() {
-                                  declineSwitched = value;
-                                  print(declineSwitched);
-                                });
+                                setState(
+                                  () {
+                                    declineSwitched = value;
+                                    print(declineSwitched);
+                                  },
+                                );
                               },
-                              activeTrackColor: Color.fromARGB(255, 0, 17, 255),
-                              activeColor: Colors.black,
-                              inactiveThumbColor: Colors.black,
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
                             ),
                           ],
                         ),
@@ -207,7 +239,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Dips"),
+                            Text(
+                              "Dips",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
                             Switch(
                               value: dipsSwitched,
                               onChanged: (value) {
@@ -216,9 +252,10 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   print(dipsSwitched);
                                 });
                               },
-                              activeTrackColor: Color.fromARGB(255, 0, 17, 255),
-                              activeColor: Colors.black,
-                              inactiveThumbColor: Colors.black,
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
                             ),
                           ],
                         ),
@@ -228,7 +265,11 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Cable chest"),
+                            Text(
+                              "Cable chest",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
                             Switch(
                               value: cableSwitched,
                               onChanged: (value) {
@@ -237,9 +278,10 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   print(cableSwitched);
                                 });
                               },
-                              activeTrackColor: Color.fromARGB(255, 0, 17, 255),
-                              activeColor: Colors.black,
-                              inactiveThumbColor: Colors.black,
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
                             ),
                           ],
                         ),
@@ -252,28 +294,588 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
 
                   // second tab bar viiew widget
                   Container(
-                    color: Color.fromARGB(255, 226, 113, 150),
-                    child: const Center(
-                      child: Text(
-                        'Back',
-                      ),
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Seated Row",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                              value: benchPressSwitched,
+                              onChanged: (value) {
+                                setState(
+                                  () {
+                                    benchPressSwitched = value;
+                                    print(benchPressSwitched);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Pull-Down",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: pushUpsSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  pushUpsSwitched = value;
+                                  print(benchPressSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Single-Arm Dumbbell Row",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: dumbellSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  dumbellSwitched = value;
+                                  print(dumbellSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Pull ups",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: inclineSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  inclineSwitched = value;
+                                  print(inclineSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Dumbell pull over",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: declineSwitched,
+                              onChanged: (value) {
+                                setState(
+                                  () {
+                                    declineSwitched = value;
+                                    print(declineSwitched);
+                                  },
+                                );
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Dead lift",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: dipsSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  dipsSwitched = value;
+                                  print(dipsSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Pullovers",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: cableSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  cableSwitched = value;
+                                  print(cableSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        )
+                      ],
                     ),
                   ),
                   // third tab bar view widget
                   Container(
-                    color: Color.fromARGB(255, 15, 155, 101),
-                    child: const Center(
-                      child: Text(
-                        'Arms',
-                      ),
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Barbell biceps curl",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                              value: benchPressSwitched,
+                              onChanged: (value) {
+                                setState(
+                                  () {
+                                    benchPressSwitched = value;
+                                    print(benchPressSwitched);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Preacher biceps curl",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: pushUpsSwitched,
+                              onChanged: (value) {
+                                setState(
+                                  () {
+                                    pushUpsSwitched = value;
+                                    print(benchPressSwitched);
+                                  },
+                                );
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Cable biceps curl",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: dumbellSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  dumbellSwitched = value;
+                                  print(dumbellSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Cable triceps pushdown",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: inclineSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  inclineSwitched = value;
+                                  print(inclineSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Dips",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: declineSwitched,
+                              onChanged: (value) {
+                                setState(
+                                  () {
+                                    declineSwitched = value;
+                                    print(declineSwitched);
+                                  },
+                                );
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Overhead Triceps Extensions",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: dipsSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  dipsSwitched = value;
+                                  print(dipsSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Close Grip Bench Presses",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: cableSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  cableSwitched = value;
+                                  print(cableSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        )
+                      ],
                     ),
                   ),
                   Container(
-                    color: Color.fromARGB(255, 218, 214, 17),
-                    child: const Center(
-                      child: Text(
-                        'Legs',
-                      ),
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Deadlift",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                              value: benchPressSwitched,
+                              onChanged: (value) {
+                                setState(
+                                  () {
+                                    benchPressSwitched = value;
+                                    print(benchPressSwitched);
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Leg press",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: pushUpsSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  pushUpsSwitched = value;
+                                  print(benchPressSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Seated hamstring curl",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: dumbellSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  dumbellSwitched = value;
+                                  print(dumbellSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Seated leg extension",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: inclineSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  inclineSwitched = value;
+                                  print(inclineSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Dumbbell lunge",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: declineSwitched,
+                              onChanged: (value) {
+                                setState(
+                                  () {
+                                    declineSwitched = value;
+                                    print(declineSwitched);
+                                  },
+                                );
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Squats",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: dipsSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  dipsSwitched = value;
+                                  print(dipsSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Single Leg Curl",
+                              style: GoogleFonts.blackHanSans(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                            Switch(
+                              value: cableSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  cableSwitched = value;
+                                  print(cableSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.deepOrange,
+                              inactiveThumbColor: Colors.white,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        )
+                      ],
                     ),
                   ),
                 ],
@@ -283,19 +885,82 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 80,
-                  width: 410,
+                  height: 50,
+                  width: 150,
                   child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text("Go Back")),
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color.fromARGB(255, 4, 0, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {
+                      //Navigator.pop(context);
+                      Switched sw = Switched(
+                          benchPressSwitched,
+                          pushUpsSwitched,
+                          dumbellSwitched,
+                          inclineSwitched,
+                          declineSwitched,
+                          dipsSwitched,
+                          cableSwitched);
+                    },
+                    child: Text(
+                      "Save",
+                      style: GoogleFonts.blackHanSans(
+                        fontSize: 40,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 50,
+                  width: 410,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 4, 0, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Go Back",
+                      style: GoogleFonts.blackHanSans(
+                        fontSize: 40,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+class Switched {
+  bool benchSw = false;
+  bool pushSw = false;
+  bool dumbellSw = false;
+  bool inclineSw = false;
+  bool declineSw = false;
+  bool dipsSw = false;
+  bool cableSw = false;
+  Switched(this.benchSw, this.pushSw, this.dumbellSw, this.inclineSw,
+      this.declineSw, this.dipsSw, this.cableSw);
 }
