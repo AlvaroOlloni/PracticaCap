@@ -34,7 +34,7 @@ Widget botonStrength() {
             child: Text(
               "Strength",
               style: GoogleFonts.blackHanSans(
-                  fontSize: 30, color: Color.fromARGB(0, 0, 0, 0)),
+                  fontSize: 30, color: Colors.transparent),
             ),
           ),
         );

@@ -83,54 +83,54 @@ Widget campoContrasena() {
 
 Widget botonEntrar() {
   return StreamBuilder(
-      stream: null,
-      builder: (context, snapshot) {
-        return ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            elevation: 4,
-            shadowColor: Colors.white,
-            primary: const Color.fromARGB(255, 255, 123, 0),
-          ),
-          onPressed: () async {
-            usu = usuario.text;
-            pass = password.text;
+    stream: null,
+    builder: (context, snapshot) {
+      return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 4,
+          shadowColor: Colors.white,
+          primary: const Color.fromARGB(255, 255, 123, 0),
+        ),
+        onPressed: () async {
+          usu = usuario.text;
+          pass = password.text;
 
-            //Crear un usuario nuevo
-            //Cambiar por LogIn y poner este método en Register.dart
-            try {
-              await FirebaseAuth.instance
-                  .signInWithEmailAndPassword(email: usu, password: pass);
-              // ignore: avoid_print
-              print("Usuario logueado");
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setString(usu, pass);
+          //Crear un usuario nuevo
+          //Cambiar por LogIn y poner este método en Register.dart
+          try {
+            await FirebaseAuth.instance
+                .signInWithEmailAndPassword(email: usu, password: pass);
+            // ignore: avoid_print
+            print("Usuario logueado");
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString(usu, pass);
 
-              if (FirebaseAuth.instance.currentUser != null) {
-                // ignore: use_build_context_synchronously
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NavScreen(),
-                  ),
-                  (route) => false,
-                );
-                usuario.clear();
-                password.clear();
-              }
-            } on FirebaseAuthException catch (e) {
-              if (e.code == 'weak-password') {
-                // ignore: avoid_print
-                print('The password provided is too weak.');
-              } else if (e.code == 'email-already-in-use') {
-                // ignore: avoid_print
-                print('The account already exists for that email.');
-              }
-            } catch (e) {
-              // ignore: avoid_print
-              print(e);
+            if (FirebaseAuth.instance.currentUser != null) {
+              // ignore: use_build_context_synchronously
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NavScreen(),
+                ),
+                (route) => false,
+              );
+              usuario.clear();
+              password.clear();
             }
+          } on FirebaseAuthException catch (e) {
+            if (e.code == 'weak-password') {
+              // ignore: avoid_print
+              print('The password provided is too weak.');
+            } else if (e.code == 'email-already-in-use') {
+              // ignore: avoid_print
+              print('The account already exists for that email.');
+            }
+          } catch (e) {
+            // ignore: avoid_print
+            print(e);
+          }
 
-            /*
+          /*
           FirebaseFirestore db;
   
           final usuarios = <String, String>{
@@ -139,14 +139,15 @@ Widget botonEntrar() {
             "country": "USA"
           };
           */
-          },
-          child: const Text(
-            "Go",
-            style: TextStyle(
-                fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        );
-      });
+        },
+        child: const Text(
+          "Go",
+          style: TextStyle(
+              fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      );
+    },
+  );
 }
 
 Widget botonAbrirRegistrar() {

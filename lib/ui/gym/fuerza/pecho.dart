@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+comprobar() {
+  if (getCableChest() == false) {}
+}
+
 Future<String> getBenchPress() async {
   FirebaseFirestore db = FirebaseFirestore.instance;
   String existe = '';
@@ -10,7 +14,7 @@ Future<String> getBenchPress() async {
       .get();
 
   if (document.exists && document.get("Bench Press") == true) {
-    existe = "true";
+    existe = "Bench Press";
   } else {
     existe = 'false';
   }
@@ -27,7 +31,7 @@ Future<String> getCableChest() async {
       .get();
 
   if (document.exists && document.get("Cable Chest") == true) {
-    existe = "true";
+    existe = "Cable Chest";
   } else {
     existe = 'false';
   }
@@ -44,7 +48,7 @@ Future<String> getDecline() async {
       .get();
 
   if (document.exists && document.get("Decline") == true) {
-    existe = "true";
+    existe = "Decline";
   } else {
     existe = 'false';
   }
@@ -61,7 +65,7 @@ Future<String> getDips() async {
       .get();
 
   if (document.exists && document.get("Dips") == true) {
-    existe = "true";
+    existe = "Dips";
   } else {
     existe = 'false';
   }
@@ -78,7 +82,7 @@ Future<String> getDumbbell() async {
       .get();
 
   if (document.exists && document.get("Dumbbell Flyes") == true) {
-    existe = "true";
+    existe = "Dumbbell";
   } else {
     existe = 'false';
   }
@@ -95,7 +99,7 @@ Future<String> getIncline() async {
       .get();
 
   if (document.exists && document.get("Incline") == true) {
-    existe = "true";
+    existe = "Incline";
   } else {
     existe = 'false';
   }
@@ -112,7 +116,7 @@ Future<String> getPushUps() async {
       .get();
 
   if (document.exists && document.get("Push Ups") == true) {
-    existe = "true";
+    existe = "Push Ups";
   } else {
     existe = 'false';
   }

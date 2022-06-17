@@ -22,7 +22,7 @@ class _UserScreenState extends State<UserScreen> {
       child: Column(
         children: [
           const SizedBox(
-            height: 50,
+            height: 70,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
