@@ -354,10 +354,12 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                       .set(data);
 
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MostrarFuerzaScreen()));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MostrarFuerzaScreen(),
+                                    ),
+                                  );
                                 },
                                 child: Text(
                                   "Save",
@@ -1136,7 +1138,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
               children: [
                 SizedBox(
                   height: 50,
-                  width: 410,
+                  width: 250,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromARGB(255, 4, 0, 255),

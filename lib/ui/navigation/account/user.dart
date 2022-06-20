@@ -84,9 +84,10 @@ Widget cardName2() {
                           builder: (context, snapshot) => Text(
                             snapshot.hasData ? snapshot.data! : "",
                             style: const TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 0, 0, 0)),
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 0, 0, 0),
+                            ),
                             textWidthBasis: TextWidthBasis.parent,
                           ),
                         ),

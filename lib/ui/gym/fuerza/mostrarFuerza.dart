@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/gym/fuerza/fuerza.dart';
-import 'package:mi_app/ui/gym/fuerza/pecho.dart';
+import 'package:mi_app/ui/gym/fuerza/data.dart';
 
 class MostrarFuerzaScreen extends StatefulWidget {
   const MostrarFuerzaScreen({Key? key}) : super(key: key);
@@ -26,47 +25,75 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
         ),
         body: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                card1(),
-              ],
+            FutureBuilder(
+              future: getBenchPress(),
+              builder: ((context, snapshot) {
+                if (snapshot.data == "Bench Press") {
+                  return card();
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                card2(),
-              ],
+            FutureBuilder(
+              future: getCableChest(),
+              builder: ((context, snapshot) {
+                if (snapshot.data == "Cable Chest") {
+                  return card2();
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                card3(),
-              ],
+            FutureBuilder(
+              future: getDecline(),
+              builder: ((context, snapshot) {
+                if (snapshot.data == "Decline") {
+                  return card3();
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                card4(),
-              ],
+            FutureBuilder(
+              future: getDips(),
+              builder: ((context, snapshot) {
+                if (snapshot.data == "Dips") {
+                  return card4();
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                card5(),
-              ],
+            FutureBuilder(
+              future: getDumbbell(),
+              builder: ((context, snapshot) {
+                if (snapshot.data == "Dumbbell Flyes") {
+                  return card5();
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                card6(),
-              ],
+            FutureBuilder(
+              future: getIncline(),
+              builder: ((context, snapshot) {
+                if (snapshot.data == "Incline") {
+                  return card6();
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                card7(),
-              ],
+            FutureBuilder(
+              future: getPush(),
+              builder: ((context, snapshot) {
+                if (snapshot.data == "Push Ups") {
+                  return card7();
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
             ),
             /* StreamBuilder<Object>(
               stream: null,
@@ -91,270 +118,4 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
       ),
     );
   }
-}
-
-Widget card1() {
-  return Flexible(
-    child: SizedBox(
-      width: 410,
-      height: 80,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                FutureBuilder<String>(
-                  future: getBenchPress(),
-                  builder: (context, snapshot) => Text(
-                    snapshot.hasData ? snapshot.data! : "",
-                    style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    textWidthBasis: TextWidthBasis.parent,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget card2() {
-  return Flexible(
-    child: SizedBox(
-      width: 410,
-      height: 80,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                FutureBuilder<String>(
-                  future: getCableChest(),
-                  builder: (context, snapshot) => Text(
-                    snapshot.hasData ? snapshot.data! : "",
-                    style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    textWidthBasis: TextWidthBasis.parent,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget card3() {
-  return Flexible(
-    child: SizedBox(
-      width: 410,
-      height: 80,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                FutureBuilder<String>(
-                  future: getDecline(),
-                  builder: (context, snapshot) => Text(
-                    snapshot.hasData ? snapshot.data! : "",
-                    style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    textWidthBasis: TextWidthBasis.parent,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget card4() {
-  return Flexible(
-    child: SizedBox(
-      width: 410,
-      height: 80,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                FutureBuilder<String>(
-                  future: getDips(),
-                  builder: (context, snapshot) => Text(
-                    snapshot.hasData ? snapshot.data! : "",
-                    style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    textWidthBasis: TextWidthBasis.parent,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget card5() {
-  return Flexible(
-    child: SizedBox(
-      width: 410,
-      height: 80,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                FutureBuilder<String>(
-                  future: getDumbbell(),
-                  builder: (context, snapshot) => Text(
-                    snapshot.hasData ? snapshot.data! : "",
-                    style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    textWidthBasis: TextWidthBasis.parent,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget card6() {
-  return Flexible(
-    child: SizedBox(
-      width: 410,
-      height: 80,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                FutureBuilder<String>(
-                  future: getIncline(),
-                  builder: (context, snapshot) => Text(
-                    snapshot.hasData ? snapshot.data! : "",
-                    style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    textWidthBasis: TextWidthBasis.parent,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget card7() {
-  return Flexible(
-    child: SizedBox(
-      width: 410,
-      height: 80,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                FutureBuilder<String>(
-                  future: getPushUps(),
-                  builder: (context, snapshot) => Text(
-                    snapshot.hasData ? snapshot.data! : "",
-                    style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    textWidthBasis: TextWidthBasis.parent,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
 }
