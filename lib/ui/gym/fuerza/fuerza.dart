@@ -1,11 +1,8 @@
-// ignore_for_file: unnecessary_const
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mi_app/ui/gym/fuerza/mostrarFuerza.dart';
-import 'package:mi_app/ui/navigation/nav.dart';
 
 class FuerzaScreen extends StatefulWidget {
   @override
@@ -336,29 +333,110 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  final data = <String, bool>{
-                                    "Bench Press": benchPressSwitched,
-                                    "Push Ups": pushUpsSwitched,
-                                    "Dumbbell Flyes": dumbellSwitched,
-                                    "Incline": inclineSwitched,
-                                    "Decline": declineSwitched,
-                                    "Dips": dipsSwitched,
-                                    "Cable Chest": cableSwitched
-                                  };
+                                  final numSets = TextEditingController();
 
-                                  FirebaseFirestore.instance
-                                      .collection("Pecho")
-                                      .doc(FirebaseAuth
-                                          .instance.currentUser!.email
-                                          .toString())
-                                      .set(data);
+                                  int num = 0;
 
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const MostrarFuerzaScreen(),
-                                    ),
+                                  final numReps = TextEditingController();
+
+                                  int num2 = 0;
+
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        backgroundColor: const Color.fromARGB(
+                                            255, 34, 56, 67),
+                                        title: const Text(
+                                          "Sets and reps",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                        content: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    99, 27, 38, 44),
+                                                filled: true,
+                                              ),
+                                            ),
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numReps,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Reps",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    99, 27, 38, 44),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        actions: <Widget>[
+                                          MaterialButton(
+                                            elevation: 0.5,
+                                            child: const Text(
+                                              "Confirm",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              num = int.parse(numSets.text);
+
+                                              num2 = int.parse(numReps.text);
+
+                                              final data = <String, dynamic>{
+                                                "Bench Press":
+                                                    benchPressSwitched,
+                                                "Push Ups": pushUpsSwitched,
+                                                "Dumbbell Flyes":
+                                                    dumbellSwitched,
+                                                "Incline": inclineSwitched,
+                                                "Decline": declineSwitched,
+                                                "Dips": dipsSwitched,
+                                                "Cable Chest": cableSwitched,
+                                                "sets": num,
+                                                "Reps": num2,
+                                              };
+                                              FirebaseFirestore.instance
+                                                  .collection("Pecho")
+                                                  .doc(FirebaseAuth.instance
+                                                      .currentUser!.email
+                                                      .toString())
+                                                  .set(data);
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
                                   );
                                 },
                                 child: Text(
@@ -370,6 +448,34 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 50,
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: const Color.fromARGB(255, 4, 0, 255),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MostrarFuerzaScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Go",
+                                  style: GoogleFonts.blackHanSans(
+                                    fontSize: 40,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ],

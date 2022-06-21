@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/gym/fuerza/data.dart';
+import 'package:mi_app/ui/gym/fuerza/getData.dart';
 
 class MostrarFuerzaScreen extends StatefulWidget {
   const MostrarFuerzaScreen({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
                 if (snapshot.data == "Bench Press") {
                   return card();
                 } else {
-                  return const CircularProgressIndicator();
+                  return const SizedBox();
                 }
               }),
             ),
@@ -41,7 +41,7 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
                 if (snapshot.data == "Cable Chest") {
                   return card2();
                 } else {
-                  return const CircularProgressIndicator();
+                  return const SizedBox();
                 }
               }),
             ),
@@ -51,7 +51,7 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
                 if (snapshot.data == "Decline") {
                   return card3();
                 } else {
-                  return const CircularProgressIndicator();
+                  return const SizedBox();
                 }
               }),
             ),
@@ -61,7 +61,7 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
                 if (snapshot.data == "Dips") {
                   return card4();
                 } else {
-                  return const CircularProgressIndicator();
+                  return const SizedBox();
                 }
               }),
             ),
@@ -71,7 +71,7 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
                 if (snapshot.data == "Dumbbell Flyes") {
                   return card5();
                 } else {
-                  return const CircularProgressIndicator();
+                  return const SizedBox();
                 }
               }),
             ),
@@ -81,7 +81,7 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
                 if (snapshot.data == "Incline") {
                   return card6();
                 } else {
-                  return const CircularProgressIndicator();
+                  return const SizedBox();
                 }
               }),
             ),
@@ -91,7 +91,7 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
                 if (snapshot.data == "Push Ups") {
                   return card7();
                 } else {
-                  return const CircularProgressIndicator();
+                  return const SizedBox();
                 }
               }),
             ),

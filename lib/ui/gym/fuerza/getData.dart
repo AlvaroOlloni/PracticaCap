@@ -18,6 +18,24 @@ Future<String> getBenchPress() async {
   return existe;
 }
 
+Future<dynamic> getSets() async {
+  int valor = 0;
+  FirebaseFirestore.instance
+      .collection("Pecho")
+      .doc(FirebaseAuth.instance.currentUser!.email.toString())
+      .get()
+      .then((DocumentSnapshot documentSnapshot) {
+    if (documentSnapshot.exists) {
+      dynamic nested = int.parse(
+        documentSnapshot.get(
+          ["sets"],
+        ),
+      );
+      return nested;
+    }
+  });
+}
+
 Widget card() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -44,6 +62,15 @@ Widget card() {
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    /*
+                    FutureBuilder<dynamic>(
+                      future: FirebaseFirestore.instance,
+                      builder: (context, snapshot) {},
+                      
+                    ),*/
                   ],
                 ),
               ],
@@ -56,9 +83,8 @@ Widget card() {
 }
 
 Future<String> getCableChest() async {
-  FirebaseFirestore db = FirebaseFirestore.instance;
   String existe = '';
-  final document = await db
+  final document = await FirebaseFirestore.instance
       .collection("Pecho")
       .doc(FirebaseAuth.instance.currentUser!.email.toString())
       .get();
