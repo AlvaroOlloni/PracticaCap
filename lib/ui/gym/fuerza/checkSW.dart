@@ -455,7 +455,7 @@ checkDialog(
     return Fluttertoast.showToast(
         msg: "Nothing selected",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         fontSize: 24,
         backgroundColor: Colors.white,
@@ -465,7 +465,7 @@ checkDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: const Color.fromARGB(255, 34, 56, 67),
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
           title: const Text(
             "   Sets and reps",
             style: TextStyle(
@@ -501,7 +501,96 @@ checkDialog(
                 ),
               ),
               onPressed: () {
-                num = int.parse(numSets.text);
+                if (numSets.text.isEmpty == true) {
+                  num = 0;
+                } else {
+                  num = int.parse(numSets.text);
+                }
+
+                if (numSets2.text.isEmpty == true) {
+                  num2 = 0;
+                } else {
+                  num2 = int.parse(numSets2.text);
+                }
+
+                if (numSets3.text.isEmpty == true) {
+                  num3 = 0;
+                } else {
+                  num3 = int.parse(numSets3.text);
+                }
+
+                if (numSets4.text.isEmpty == true) {
+                  num4 = 0;
+                } else {
+                  num4 = int.parse(numSets4.text);
+                }
+
+                if (numSets5.text.isEmpty == true) {
+                  num5 = 0;
+                } else {
+                  num5 = int.parse(numSets5.text);
+                }
+
+                if (numSets6.text.isEmpty == true) {
+                  num5 = 0;
+                } else {
+                  num5 = int.parse(numSets5.text);
+                }
+
+                if (numSets6.text.isEmpty == true) {
+                  num6 = 0;
+                } else {
+                  num6 = int.parse(numSets6.text);
+                }
+
+                if (numSets7.text.isEmpty == true) {
+                  num7 = 0;
+                } else {
+                  num7 = int.parse(numSets7.text);
+                }
+
+                if (numSets8.text.isEmpty == true) {
+                  num8 = 0;
+                } else {
+                  num8 = int.parse(numSets8.text);
+                }
+
+                if (numSets9.text.isEmpty == true) {
+                  num9 = 0;
+                } else {
+                  num9 = int.parse(numSets9.text);
+                }
+
+                if (numSets10.text.isEmpty == true) {
+                  num10 = 0;
+                } else {
+                  num10 = int.parse(numSets10.text);
+                }
+
+                if (numSets11.text.isEmpty == true) {
+                  num11 = 0;
+                } else {
+                  num11 = int.parse(numSets11.text);
+                }
+
+                if (numSets12.text.isEmpty == true) {
+                  num12 = 0;
+                } else {
+                  num12 = int.parse(numSets12.text);
+                }
+
+                if (numSets13.text.isEmpty == true) {
+                  num13 = 0;
+                } else {
+                  num13 = int.parse(numSets13.text);
+                }
+
+                if (numSets14.text.isEmpty == true) {
+                  num14 = 0;
+                } else {
+                  num14 = int.parse(numSets14.text);
+                }
+                /*
                 num2 = int.parse(numSets2.text);
                 num3 = int.parse(numSets3.text);
                 num4 = int.parse(numSets4.text);
@@ -515,6 +604,7 @@ checkDialog(
                 num12 = int.parse(numSets12.text);
                 num13 = int.parse(numSets13.text);
                 num14 = int.parse(numSets14.text);
+                */
 
                 final data = <String, dynamic>{
                   "Bench Press": benchPressSwitched,

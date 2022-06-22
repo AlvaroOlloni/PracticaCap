@@ -63,7 +63,7 @@ Widget card() {
                             return Text(
                               'Sets = $value Reps = $value2',
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
@@ -146,7 +146,7 @@ Widget card2() {
                             return Text(
                               'Sets = $value Reps = $value2',
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
@@ -566,7 +566,7 @@ Widget card7() {
                             return Text(
                               'Sets = $value Reps = $value2',
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
