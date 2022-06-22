@@ -19,7 +19,7 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
-            'Ejercicios Seleccionados',
+            'Selected',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
         ),
@@ -95,24 +95,19 @@ class _MostrarFuerzaScreenState extends State<MostrarFuerzaScreen> {
                 }
               }),
             ),
-            /* StreamBuilder<Object>(
-              stream: null,
-              builder: (context, snapshot) {
-                return TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: TextButton.styleFrom(backgroundColor: Colors.white),
-                  child: const Text(
-                    "Go back",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                );
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
               },
-            ),*/
+              style: TextButton.styleFrom(backgroundColor: Colors.white),
+              child: const Text(
+                "Go back",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ],
         ),
       ),

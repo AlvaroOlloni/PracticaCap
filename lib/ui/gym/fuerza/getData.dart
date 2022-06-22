@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mi_app/ui/gym/fuerza/sets.dart';
 
 Future<String> getBenchPress() async {
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -16,24 +15,6 @@ Future<String> getBenchPress() async {
     existe = "false";
   }
   return existe;
-}
-
-Future<dynamic> getSets() async {
-  int valor = 0;
-  FirebaseFirestore.instance
-      .collection("Pecho")
-      .doc(FirebaseAuth.instance.currentUser!.email.toString())
-      .get()
-      .then((DocumentSnapshot documentSnapshot) {
-    if (documentSnapshot.exists) {
-      dynamic nested = int.parse(
-        documentSnapshot.get(
-          ["sets"],
-        ),
-      );
-      return nested;
-    }
-  });
 }
 
 Widget card() {
@@ -53,24 +34,47 @@ Widget card() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(
+                    const Text(
                       "Bench Press",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
-                    /*
-                    FutureBuilder<dynamic>(
-                      future: FirebaseFirestore.instance,
-                      builder: (context, snapshot) {},
-                      
-                    ),*/
+                    SizedBox(
+                      height: 20,
+                      child:
+                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        future: FirebaseFirestore.instance
+                            .collection("Pecho")
+                            .doc(FirebaseAuth.instance.currentUser!.email
+                                .toString())
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var data = snapshot.data!.data();
+                            var value = data!['setsBench'];
+                            var value2 = data['RepsBench'];
+                            return Text(
+                              'Sets = $value Reps = $value2',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -113,14 +117,46 @@ Widget card2() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(
+                    const Text(
                       "Cable Chest",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      child:
+                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        future: FirebaseFirestore.instance
+                            .collection("Pecho")
+                            .doc(FirebaseAuth.instance.currentUser!.email
+                                .toString())
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var data = snapshot.data!.data();
+                            var value = data!['setsCable'];
+                            var value2 = data['RepsCable'];
+                            return Text(
+                              'Sets = $value Reps = $value2',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -165,14 +201,46 @@ Widget card3() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(
+                    const Text(
                       "Decline",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      child:
+                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        future: FirebaseFirestore.instance
+                            .collection("Pecho")
+                            .doc(FirebaseAuth.instance.currentUser!.email
+                                .toString())
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var data = snapshot.data!.data();
+                            var value = data!['setsDips'];
+                            var value2 = data['RepsDips'];
+                            return Text(
+                              'Sets = $value Reps = $value2',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -217,14 +285,46 @@ Widget card4() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(
+                    const Text(
                       "Dips",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      child:
+                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        future: FirebaseFirestore.instance
+                            .collection("Pecho")
+                            .doc(FirebaseAuth.instance.currentUser!.email
+                                .toString())
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var data = snapshot.data!.data();
+                            var value = data!['setsDips'];
+                            var value2 = data['RepsDips'];
+                            return Text(
+                              'Sets = $value Reps = $value2',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -269,14 +369,46 @@ Widget card5() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(
+                    const Text(
                       "Dumbbell",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      child:
+                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        future: FirebaseFirestore.instance
+                            .collection("Pecho")
+                            .doc(FirebaseAuth.instance.currentUser!.email
+                                .toString())
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var data = snapshot.data!.data();
+                            var value = data!['setsDumbbell'];
+                            var value2 = data['RepsDumbbell'];
+                            return Text(
+                              'Sets = $value Reps = $value2',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -321,14 +453,46 @@ Widget card6() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(
+                    const Text(
                       "Incline",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      child:
+                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        future: FirebaseFirestore.instance
+                            .collection("Pecho")
+                            .doc(FirebaseAuth.instance.currentUser!.email
+                                .toString())
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var data = snapshot.data!.data();
+                            var value = data!['setsIncline'];
+                            var value2 = data['RepsIncline'];
+                            return Text(
+                              'Sets = $value Reps = $value2',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -373,14 +537,46 @@ Widget card7() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(
+                    const Text(
                       "Push",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      child:
+                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        future: FirebaseFirestore.instance
+                            .collection("Pecho")
+                            .doc(FirebaseAuth.instance.currentUser!.email
+                                .toString())
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var data = snapshot.data!.data();
+                            var value = data!['setsPush'];
+                            var value2 = data['RepsPush'];
+                            return Text(
+                              'Sets = $value Reps = $value2',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),

@@ -337,9 +337,57 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
 
                                   int num = 0;
 
-                                  final numReps = TextEditingController();
+                                  final numSets2 = TextEditingController();
 
                                   int num2 = 0;
+
+                                  final numSets3 = TextEditingController();
+
+                                  int num3 = 0;
+
+                                  final numSets4 = TextEditingController();
+
+                                  int num4 = 0;
+
+                                  final numSets5 = TextEditingController();
+
+                                  int num5 = 0;
+
+                                  final numSets6 = TextEditingController();
+
+                                  int num6 = 0;
+
+                                  final numSets7 = TextEditingController();
+
+                                  int num7 = 0;
+
+                                  final numSets8 = TextEditingController();
+
+                                  int num8 = 0;
+
+                                  final numSets9 = TextEditingController();
+
+                                  int num9 = 0;
+
+                                  final numSets10 = TextEditingController();
+
+                                  int num10 = 0;
+
+                                  final numSets11 = TextEditingController();
+
+                                  int num11 = 0;
+
+                                  final numSets12 = TextEditingController();
+
+                                  int num12 = 0;
+
+                                  final numSets13 = TextEditingController();
+
+                                  int num13 = 0;
+
+                                  final numSets14 = TextEditingController();
+
+                                  int num14 = 0;
 
                                   showDialog(
                                     context: context,
@@ -348,53 +396,370 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                         backgroundColor: const Color.fromARGB(
                                             255, 34, 56, 67),
                                         title: const Text(
-                                          "Sets and reps",
+                                          "   Sets and reps",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 30,
                                           ),
                                         ),
-                                        content: Column(
-                                          children: [
-                                            TextField(
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              controller: numSets,
-                                              style: const TextStyle(
+                                        content: SizedBox(
+                                          height: 600,
+                                          width: 200,
+                                          child: ListView(
+                                            scrollDirection: Axis.vertical,
+                                            children: [
+                                              const Text(
+                                                "Bench Press",
+                                                style: TextStyle(
                                                   color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                              decoration: const InputDecoration(
-                                                hintText: "Sets",
-                                                hintStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
                                                   fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
                                                 ),
-                                                fillColor: Color.fromARGB(
-                                                    99, 27, 38, 44),
-                                                filled: true,
                                               ),
-                                            ),
-                                            TextField(
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              controller: numReps,
-                                              style: const TextStyle(
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Sets",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets2,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Reps",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              const Text(
+                                                "Push Ups",
+                                                style: TextStyle(
                                                   color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                              decoration: const InputDecoration(
-                                                hintText: "Reps",
-                                                hintStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
                                                   fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
                                                 ),
-                                                fillColor: Color.fromARGB(
-                                                    99, 27, 38, 44),
-                                                filled: true,
                                               ),
-                                            ),
-                                          ],
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets3,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Sets",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets4,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Reps",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              const Text(
+                                                "Dumbbell Flyes",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets5,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Sets",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets6,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Reps",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              const Text(
+                                                "Incline",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets7,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Sets",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets8,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Reps",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              const Text(
+                                                "Decline",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets9,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Sets",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets10,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Reps",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              const Text(
+                                                "Dips",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets11,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Sets",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets12,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Sets",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              const Text(
+                                                "CableChest",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets13,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Sets",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                              TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller: numSets14,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Reps",
+                                                  hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  fillColor: Color.fromARGB(
+                                                      99, 27, 38, 44),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         actions: <Widget>[
                                           MaterialButton(
@@ -409,8 +774,19 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                             ),
                                             onPressed: () {
                                               num = int.parse(numSets.text);
-
-                                              num2 = int.parse(numReps.text);
+                                              num2 = int.parse(numSets2.text);
+                                              num3 = int.parse(numSets3.text);
+                                              num4 = int.parse(numSets4.text);
+                                              num5 = int.parse(numSets5.text);
+                                              num6 = int.parse(numSets6.text);
+                                              num7 = int.parse(numSets7.text);
+                                              num8 = int.parse(numSets8.text);
+                                              num9 = int.parse(numSets9.text);
+                                              num10 = int.parse(numSets10.text);
+                                              num11 = int.parse(numSets11.text);
+                                              num12 = int.parse(numSets12.text);
+                                              num13 = int.parse(numSets13.text);
+                                              num14 = int.parse(numSets14.text);
 
                                               final data = <String, dynamic>{
                                                 "Bench Press":
@@ -422,8 +798,20 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                                 "Decline": declineSwitched,
                                                 "Dips": dipsSwitched,
                                                 "Cable Chest": cableSwitched,
-                                                "sets": num,
-                                                "Reps": num2,
+                                                "setsBench": num,
+                                                "RepsBench": num2,
+                                                "setsPush": num3,
+                                                "RepsPush": num4,
+                                                "setsDumbbell": num5,
+                                                "RepsDumbbell": num6,
+                                                "setsIncline": num7,
+                                                "RepsIncline": num8,
+                                                "setsDecline": num9,
+                                                "RepsDecline": num10,
+                                                "setsDips": num11,
+                                                "RepsDips": num12,
+                                                "setsCable": num13,
+                                                "RepsCable": num14,
                                               };
                                               FirebaseFirestore.instance
                                                   .collection("Pecho")
