@@ -2,10 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mi_app/ui/gym/fuerza/checkSW.dart';
-import 'package:mi_app/ui/gym/fuerza/mostrarFuerza.dart';
+import 'package:mi_app/ui/gym/fuerza/espalda/checkSWEspalda.dart';
+import 'package:mi_app/ui/gym/fuerza/pecho/checkSWPecho.dart';
+import 'package:mi_app/ui/gym/fuerza/espalda/mostrarEspalda.dart';
+import 'package:mi_app/ui/gym/fuerza/pecho/mostrarPecho.dart';
 
 class FuerzaScreen extends StatefulWidget {
+  const FuerzaScreen({Key? key}) : super(key: key);
+
   @override
   State<FuerzaScreen> createState() => _FuerzaScreenState();
 }
@@ -124,7 +128,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                 children: [
                   // first tab bar view widget
                   Container(
-                    color: Color.fromARGB(255, 0, 0, 0),
+                    color: const Color.fromARGB(255, 0, 0, 0),
                     child: Column(
                       children: [
                         Flexible(
@@ -334,7 +338,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  checkDialog(
+                                  checkDialog1(
                                       context,
                                       benchPressSwitched,
                                       pushUpsSwitched,
@@ -368,7 +372,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const MostrarFuerzaScreen(),
+                                          const MostrarPechoScreen(),
                                     ),
                                   );
                                 },
@@ -389,7 +393,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
 
                   // second tab bar view widget
                   Container(
-                    color: Color.fromARGB(255, 0, 0, 0),
+                    color: const Color.fromARGB(255, 0, 0, 0),
                     child: Column(
                       children: [
                         Flexible(
@@ -599,28 +603,15 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  final data = <String, bool>{
-                                    "Seated Row": seatedSwitched,
-                                    "Pull Down": pullSwitched,
-                                    "Single Arm": singleArmSwitched,
-                                    "Pull Ups": pullUpsSwitched,
-                                    "Dumbbell Pull Over": pullOverSwitched,
-                                    "Dead Lift": deadLiftSwitched,
-                                    "Pull over": pullOversSwitched
-                                  };
-
-                                  FirebaseFirestore.instance
-                                      .collection("Espalda")
-                                      .doc(FirebaseAuth
-                                          .instance.currentUser!.email
-                                          .toString())
-                                      .set(data);
-
-                                  Navigator.push(
+                                  checkDialog2(
                                       context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MostrarFuerzaScreen()));
+                                      seatedSwitched,
+                                      pullSwitched,
+                                      singleArmSwitched,
+                                      pullUpsSwitched,
+                                      pullOverSwitched,
+                                      deadLiftSwitched,
+                                      pullOversSwitched);
                                 },
                                 child: Text(
                                   "Save",
@@ -631,6 +622,34 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 50,
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: const Color.fromARGB(255, 4, 0, 255),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MostrarEspaldaScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Go",
+                                  style: GoogleFonts.blackHanSans(
+                                    fontSize: 40,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ],
@@ -871,7 +890,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const MostrarFuerzaScreen()));
+                                              const MostrarPechoScreen()));
                                 },
                                 child: Text(
                                   "Save",
@@ -1121,7 +1140,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const MostrarFuerzaScreen()));
+                                              const MostrarPechoScreen()));
                                 },
                                 child: Text(
                                   "Save",

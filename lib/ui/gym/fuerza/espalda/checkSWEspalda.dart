@@ -3,14 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-check1(bool benchPressSwitched, TextEditingController numSets,
+check1(bool seatedSwitched, TextEditingController numSets,
     TextEditingController numSets2) {
-  if (benchPressSwitched == true) {
+  if (seatedSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Bench Press",
+            "Seated Row",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ check1(bool benchPressSwitched, TextEditingController numSets,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -45,7 +45,7 @@ check1(bool benchPressSwitched, TextEditingController numSets,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -57,14 +57,14 @@ check1(bool benchPressSwitched, TextEditingController numSets,
   }
 }
 
-check2(bool pushUpsSwitched, TextEditingController numSets3,
+check2(bool pullSwitched, TextEditingController numSets3,
     TextEditingController numSets4) {
-  if (pushUpsSwitched == true) {
+  if (pullSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Push Ups",
+            "Pull Down",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -83,7 +83,7 @@ check2(bool pushUpsSwitched, TextEditingController numSets3,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -99,7 +99,7 @@ check2(bool pushUpsSwitched, TextEditingController numSets3,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -111,14 +111,14 @@ check2(bool pushUpsSwitched, TextEditingController numSets3,
   }
 }
 
-check3(bool dumbellSwitched, TextEditingController numSets5,
+check3(bool singleArmSwitched, TextEditingController numSets5,
     TextEditingController numSets6) {
-  if (dumbellSwitched == true) {
+  if (singleArmSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Dumbbell Flyes",
+            "Single Arm",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -137,7 +137,7 @@ check3(bool dumbellSwitched, TextEditingController numSets5,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -153,7 +153,7 @@ check3(bool dumbellSwitched, TextEditingController numSets5,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -165,14 +165,14 @@ check3(bool dumbellSwitched, TextEditingController numSets5,
   }
 }
 
-check4(bool inclineSwitched, TextEditingController numSets7,
+check4(bool pullUpsSwitched, TextEditingController numSets7,
     TextEditingController numSets8) {
-  if (inclineSwitched == true) {
+  if (pullUpsSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Incline",
+            "Pull Ups",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -191,7 +191,7 @@ check4(bool inclineSwitched, TextEditingController numSets7,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -207,7 +207,7 @@ check4(bool inclineSwitched, TextEditingController numSets7,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -219,14 +219,14 @@ check4(bool inclineSwitched, TextEditingController numSets7,
   }
 }
 
-check5(bool declineSwitched, TextEditingController numSets9,
+check5(bool pullOverSwitched, TextEditingController numSets9,
     TextEditingController numSets10) {
-  if (declineSwitched == true) {
+  if (pullOverSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Decline",
+            "Dumbbell pull over",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -245,7 +245,7 @@ check5(bool declineSwitched, TextEditingController numSets9,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -261,7 +261,7 @@ check5(bool declineSwitched, TextEditingController numSets9,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -273,14 +273,14 @@ check5(bool declineSwitched, TextEditingController numSets9,
   }
 }
 
-check6(bool dipsSwitched, TextEditingController numSets11,
+check6(bool deadLiftSwitched, TextEditingController numSets11,
     TextEditingController numSets12) {
-  if (dipsSwitched == true) {
+  if (deadLiftSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Dips",
+            "Dead Lift",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -299,7 +299,7 @@ check6(bool dipsSwitched, TextEditingController numSets11,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -315,7 +315,7 @@ check6(bool dipsSwitched, TextEditingController numSets11,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -327,14 +327,14 @@ check6(bool dipsSwitched, TextEditingController numSets11,
   }
 }
 
-check7(bool cableSwitched, TextEditingController numSets13,
+check7(bool pullOversSwitched, TextEditingController numSets13,
     TextEditingController numSets14) {
-  if (cableSwitched == true) {
+  if (pullOversSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "CableChest",
+            "Pullovers",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -353,7 +353,7 @@ check7(bool cableSwitched, TextEditingController numSets13,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -369,7 +369,7 @@ check7(bool cableSwitched, TextEditingController numSets13,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
-              fillColor: Color.fromARGB(99, 27, 38, 44),
+              fillColor: Color.fromARGB(123, 255, 255, 255),
               filled: true,
             ),
           ),
@@ -381,15 +381,15 @@ check7(bool cableSwitched, TextEditingController numSets13,
   }
 }
 
-checkDialog(
+checkDialog2(
     BuildContext context,
-    bool benchPressSwitched,
-    bool pushUpsSwitched,
-    bool dumbellSwitched,
-    bool inclineSwitched,
-    bool declineSwitched,
-    bool dipsSwitched,
-    bool cableSwitched) {
+    bool seatedSwitched,
+    bool pullSwitched,
+    bool singleArmSwitched,
+    bool pullUpsSwitched,
+    bool pullOverSwitched,
+    bool deadLiftSwitched,
+    bool pullOversSwitched) {
   final numSets = TextEditingController();
 
   int num = 0;
@@ -445,13 +445,14 @@ checkDialog(
   final numSets14 = TextEditingController();
 
   int num14 = 0;
-  if (benchPressSwitched == false &&
-      pushUpsSwitched == false &&
-      dumbellSwitched == false &&
-      inclineSwitched == false &&
-      declineSwitched == false &&
-      dipsSwitched == false &&
-      cableSwitched == false) {
+
+  if (seatedSwitched == false &&
+      pullSwitched == false &&
+      singleArmSwitched == false &&
+      pullUpsSwitched == false &&
+      pullOverSwitched == false &&
+      deadLiftSwitched == false &&
+      pullOversSwitched == false) {
     return Fluttertoast.showToast(
         msg: "Nothing selected",
         toastLength: Toast.LENGTH_SHORT,
@@ -465,7 +466,7 @@ checkDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: Colors.black,
           title: const Text(
             "   Sets and reps",
             style: TextStyle(
@@ -479,13 +480,13 @@ checkDialog(
             child: ListView(
               scrollDirection: Axis.vertical,
               children: [
-                check1(benchPressSwitched, numSets, numSets2),
-                check2(pushUpsSwitched, numSets3, numSets4),
-                check3(dumbellSwitched, numSets5, numSets6),
-                check4(inclineSwitched, numSets7, numSets8),
-                check5(declineSwitched, numSets9, numSets10),
-                check6(dipsSwitched, numSets11, numSets12),
-                check7(cableSwitched, numSets13, numSets14),
+                check1(seatedSwitched, numSets, numSets2),
+                check2(pullSwitched, numSets3, numSets4),
+                check3(singleArmSwitched, numSets5, numSets6),
+                check4(pullUpsSwitched, numSets7, numSets8),
+                check5(pullOverSwitched, numSets9, numSets10),
+                check6(deadLiftSwitched, numSets11, numSets12),
+                check7(pullOversSwitched, numSets13, numSets14),
               ],
             ),
           ),
@@ -526,12 +527,6 @@ checkDialog(
                 }
 
                 if (numSets5.text.isEmpty == true) {
-                  num5 = 0;
-                } else {
-                  num5 = int.parse(numSets5.text);
-                }
-
-                if (numSets6.text.isEmpty == true) {
                   num5 = 0;
                 } else {
                   num5 = int.parse(numSets5.text);
@@ -590,47 +585,32 @@ checkDialog(
                 } else {
                   num14 = int.parse(numSets14.text);
                 }
-                /*
-                num2 = int.parse(numSets2.text);
-                num3 = int.parse(numSets3.text);
-                num4 = int.parse(numSets4.text);
-                num5 = int.parse(numSets5.text);
-                num6 = int.parse(numSets6.text);
-                num7 = int.parse(numSets7.text);
-                num8 = int.parse(numSets8.text);
-                num9 = int.parse(numSets9.text);
-                num10 = int.parse(numSets10.text);
-                num11 = int.parse(numSets11.text);
-                num12 = int.parse(numSets12.text);
-                num13 = int.parse(numSets13.text);
-                num14 = int.parse(numSets14.text);
-                */
 
                 final data = <String, dynamic>{
-                  "Bench Press": benchPressSwitched,
-                  "Push Ups": pushUpsSwitched,
-                  "Dumbbell Flyes": dumbellSwitched,
-                  "Incline": inclineSwitched,
-                  "Decline": declineSwitched,
-                  "Dips": dipsSwitched,
-                  "Cable Chest": cableSwitched,
-                  "setsBench": num,
-                  "RepsBench": num2,
-                  "setsPush": num3,
-                  "RepsPush": num4,
-                  "setsDumbbell": num5,
-                  "RepsDumbbell": num6,
-                  "setsIncline": num7,
-                  "RepsIncline": num8,
-                  "setsDecline": num9,
-                  "RepsDecline": num10,
-                  "setsDips": num11,
-                  "RepsDips": num12,
-                  "setsCable": num13,
-                  "RepsCable": num14,
+                  "Seated Row": seatedSwitched,
+                  "Pull Down": pullSwitched,
+                  "Single Arm": singleArmSwitched,
+                  "Pull Ups": pullUpsSwitched,
+                  "Dumbbell Pull Over": pullOverSwitched,
+                  "Dead Lift": deadLiftSwitched,
+                  "Pull over": pullOversSwitched,
+                  "setsSeated": num,
+                  "RepsSeated": num2,
+                  "setsPull": num3,
+                  "RepsPull": num4,
+                  "setsSingle": num5,
+                  "RepsSingle": num6,
+                  "setsUps": num7,
+                  "RepsUps": num8,
+                  "setsDumbbell": num9,
+                  "RepsDumbbell": num10,
+                  "setsLift": num11,
+                  "RepsLift": num12,
+                  "setsOver": num13,
+                  "RepsOver": num14,
                 };
                 FirebaseFirestore.instance
-                    .collection("Pecho")
+                    .collection("Espalda")
                     .doc(FirebaseAuth.instance.currentUser!.email.toString())
                     .set(data);
                 Navigator.pop(context);

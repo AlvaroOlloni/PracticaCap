@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<String> getBenchPress() async {
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -24,30 +25,31 @@ Widget card() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 80,
+          height: 100,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Colors.white,
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                Column(
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Text(
-                      "Bench Press",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Bench Press",
+                          style: GoogleFonts.blackHanSans(
+                            fontSize: 40,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                       child:
                           FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         future: FirebaseFirestore.instance
@@ -61,9 +63,9 @@ Widget card() {
                             var value = data!['setsBench'];
                             var value2 = data['RepsBench'];
                             return Text(
-                              'Sets = $value Reps = $value2',
+                              '$value x $value2',
                               style: const TextStyle(
-                                fontSize: 20,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
@@ -107,30 +109,37 @@ Widget card2() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 80,
+          height: 100,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Colors.white,
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                Column(
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Text(
-                      "Cable Chest",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "Cable Chest",
+                          style: GoogleFonts.blackHanSans(
+                            fontSize: 40,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                       child:
                           FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         future: FirebaseFirestore.instance
@@ -144,9 +153,9 @@ Widget card2() {
                             var value = data!['setsCable'];
                             var value2 = data['RepsCable'];
                             return Text(
-                              'Sets = $value Reps = $value2',
+                              '$value x $value2',
                               style: const TextStyle(
-                                fontSize: 20,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
@@ -191,30 +200,31 @@ Widget card3() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 80,
+          height: 100,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Colors.white,
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                Column(
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Text(
-                      "Decline",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Decline",
+                          style: GoogleFonts.blackHanSans(
+                            fontSize: 40,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                       child:
                           FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         future: FirebaseFirestore.instance
@@ -228,9 +238,9 @@ Widget card3() {
                             var value = data!['setsDips'];
                             var value2 = data['RepsDips'];
                             return Text(
-                              'Sets = $value Reps = $value2',
+                              '$value x $value2',
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
@@ -275,30 +285,31 @@ Widget card4() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 80,
+          height: 100,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Colors.white,
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                Column(
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Text(
-                      "Dips",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Dips",
+                          style: GoogleFonts.blackHanSans(
+                            fontSize: 40,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                       child:
                           FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         future: FirebaseFirestore.instance
@@ -312,9 +323,9 @@ Widget card4() {
                             var value = data!['setsDips'];
                             var value2 = data['RepsDips'];
                             return Text(
-                              'Sets = $value Reps = $value2',
+                              '$value x $value2',
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
@@ -359,30 +370,31 @@ Widget card5() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 80,
+          height: 100,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Colors.white,
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                Column(
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Text(
-                      "Dumbbell",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Dumbbell",
+                          style: GoogleFonts.blackHanSans(
+                            fontSize: 40,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                       child:
                           FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         future: FirebaseFirestore.instance
@@ -396,9 +408,9 @@ Widget card5() {
                             var value = data!['setsDumbbell'];
                             var value2 = data['RepsDumbbell'];
                             return Text(
-                              'Sets = $value Reps = $value2',
+                              '$value x $value2',
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
@@ -443,58 +455,54 @@ Widget card6() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 80,
+          height: 100,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Colors.white,
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Text(
+                    Text(
                       "Incline",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    SizedBox(
-                      height: 20,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Pecho")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsIncline'];
-                            var value2 = data['RepsIncline'];
-                            return Text(
-                              'Sets = $value Reps = $value2',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        },
+                      style: GoogleFonts.blackHanSans(
+                        fontSize: 40,
+                        color: Colors.black,
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 40,
+                  child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                    future: FirebaseFirestore.instance
+                        .collection("Pecho")
+                        .doc(
+                            FirebaseAuth.instance.currentUser!.email.toString())
+                        .get(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        var data = snapshot.data!.data();
+                        var value = data!['setsIncline'];
+                        var value2 = data['RepsIncline'];
+                        return Text(
+                          '$value x $value2',
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
+                  ),
                 ),
               ],
             ),
@@ -527,30 +535,31 @@ Widget card7() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 80,
+          height: 100,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Colors.white,
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                Column(
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Text(
-                      "Push",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Push",
+                          style: GoogleFonts.blackHanSans(
+                            fontSize: 40,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                       child:
                           FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         future: FirebaseFirestore.instance
@@ -564,9 +573,9 @@ Widget card7() {
                             var value = data!['setsPush'];
                             var value2 = data['RepsPush'];
                             return Text(
-                              'Sets = $value Reps = $value2',
+                              '$value x $value2',
                               style: const TextStyle(
-                                fontSize: 20,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
