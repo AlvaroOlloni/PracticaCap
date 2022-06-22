@@ -309,7 +309,7 @@ check6(bool deadLiftSwitched, TextEditingController numSets11,
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold),
             decoration: const InputDecoration(
-              hintText: "Sets",
+              hintText: "Reps",
               hintStyle: TextStyle(
                 color: Colors.white,
                 fontSize: 16,

@@ -3,14 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-check1(bool benchPressSwitched, TextEditingController numSets,
+check1(bool deadLift2Switched, TextEditingController numSets,
     TextEditingController numSets2) {
-  if (benchPressSwitched == true) {
+  if (deadLift2Switched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Bench Press",
+            "Dead Lift",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -57,14 +57,14 @@ check1(bool benchPressSwitched, TextEditingController numSets,
   }
 }
 
-check2(bool pushUpsSwitched, TextEditingController numSets3,
+check2(bool legPressSwitched, TextEditingController numSets3,
     TextEditingController numSets4) {
-  if (pushUpsSwitched == true) {
+  if (legPressSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Push Ups",
+            "Leg Press",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -111,14 +111,14 @@ check2(bool pushUpsSwitched, TextEditingController numSets3,
   }
 }
 
-check3(bool dumbellSwitched, TextEditingController numSets5,
+check3(bool hamstringSwitched, TextEditingController numSets5,
     TextEditingController numSets6) {
-  if (dumbellSwitched == true) {
+  if (hamstringSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Dumbbell Flyes",
+            "Seated Hamstring curl",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -165,14 +165,14 @@ check3(bool dumbellSwitched, TextEditingController numSets5,
   }
 }
 
-check4(bool inclineSwitched, TextEditingController numSets7,
+check4(bool legExtensionSwitched, TextEditingController numSets7,
     TextEditingController numSets8) {
-  if (inclineSwitched == true) {
+  if (legExtensionSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Incline",
+            "Seated leg extension",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -219,14 +219,14 @@ check4(bool inclineSwitched, TextEditingController numSets7,
   }
 }
 
-check5(bool declineSwitched, TextEditingController numSets9,
+check5(bool lungeSwitched, TextEditingController numSets9,
     TextEditingController numSets10) {
-  if (declineSwitched == true) {
+  if (lungeSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Decline",
+            "Dumbbell lunge",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -273,14 +273,14 @@ check5(bool declineSwitched, TextEditingController numSets9,
   }
 }
 
-check6(bool dipsSwitched, TextEditingController numSets11,
+check6(bool squatsSwitched, TextEditingController numSets11,
     TextEditingController numSets12) {
-  if (dipsSwitched == true) {
+  if (squatsSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "Dips",
+            "Squats",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -327,14 +327,14 @@ check6(bool dipsSwitched, TextEditingController numSets11,
   }
 }
 
-check7(bool cableSwitched, TextEditingController numSets13,
+check7(bool singleLegSwitched, TextEditingController numSets13,
     TextEditingController numSets14) {
-  if (cableSwitched == true) {
+  if (singleLegSwitched == true) {
     return SizedBox(
       child: Column(
         children: [
           const Text(
-            "CableChest",
+            "Single leg curl",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -381,15 +381,15 @@ check7(bool cableSwitched, TextEditingController numSets13,
   }
 }
 
-checkDialog1(
+checkDialog4(
     BuildContext context,
-    bool benchPressSwitched,
-    bool pushUpsSwitched,
-    bool dumbellSwitched,
-    bool inclineSwitched,
-    bool declineSwitched,
-    bool dipsSwitched,
-    bool cableSwitched) {
+    bool deadLift2Switched,
+    bool legPressSwitched,
+    bool hamstringSwitched,
+    bool legExtensionSwitched,
+    bool lungeSwitched,
+    bool squatsSwitched,
+    bool singleLegSwitched) {
   final numSets = TextEditingController();
 
   int num = 0;
@@ -446,13 +446,13 @@ checkDialog1(
 
   int num14 = 0;
 
-  if (benchPressSwitched == false &&
-      pushUpsSwitched == false &&
-      dumbellSwitched == false &&
-      inclineSwitched == false &&
-      declineSwitched == false &&
-      dipsSwitched == false &&
-      cableSwitched == false) {
+  if (deadLift2Switched == false &&
+      legPressSwitched == false &&
+      hamstringSwitched == false &&
+      legExtensionSwitched == false &&
+      lungeSwitched == false &&
+      squatsSwitched == false &&
+      singleLegSwitched == false) {
     return Fluttertoast.showToast(
         msg: "Nothing selected",
         toastLength: Toast.LENGTH_SHORT,
@@ -466,7 +466,7 @@ checkDialog1(
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: Colors.black,
           title: const Text(
             "   Sets and reps",
             style: TextStyle(
@@ -480,13 +480,13 @@ checkDialog1(
             child: ListView(
               scrollDirection: Axis.vertical,
               children: [
-                check1(benchPressSwitched, numSets, numSets2),
-                check2(pushUpsSwitched, numSets3, numSets4),
-                check3(dumbellSwitched, numSets5, numSets6),
-                check4(inclineSwitched, numSets7, numSets8),
-                check5(declineSwitched, numSets9, numSets10),
-                check6(dipsSwitched, numSets11, numSets12),
-                check7(cableSwitched, numSets13, numSets14),
+                check1(deadLift2Switched, numSets, numSets2),
+                check2(legPressSwitched, numSets3, numSets4),
+                check3(hamstringSwitched, numSets5, numSets6),
+                check4(legExtensionSwitched, numSets7, numSets8),
+                check5(lungeSwitched, numSets9, numSets10),
+                check6(squatsSwitched, numSets11, numSets12),
+                check7(singleLegSwitched, numSets13, numSets14),
               ],
             ),
           ),
@@ -527,12 +527,6 @@ checkDialog1(
                 }
 
                 if (numSets5.text.isEmpty == true) {
-                  num5 = 0;
-                } else {
-                  num5 = int.parse(numSets5.text);
-                }
-
-                if (numSets6.text.isEmpty == true) {
                   num5 = 0;
                 } else {
                   num5 = int.parse(numSets5.text);
@@ -591,47 +585,32 @@ checkDialog1(
                 } else {
                   num14 = int.parse(numSets14.text);
                 }
-                /*
-                num2 = int.parse(numSets2.text);
-                num3 = int.parse(numSets3.text);
-                num4 = int.parse(numSets4.text);
-                num5 = int.parse(numSets5.text);
-                num6 = int.parse(numSets6.text);
-                num7 = int.parse(numSets7.text);
-                num8 = int.parse(numSets8.text);
-                num9 = int.parse(numSets9.text);
-                num10 = int.parse(numSets10.text);
-                num11 = int.parse(numSets11.text);
-                num12 = int.parse(numSets12.text);
-                num13 = int.parse(numSets13.text);
-                num14 = int.parse(numSets14.text);
-                */
 
                 final data = <String, dynamic>{
-                  "Bench Press": benchPressSwitched,
-                  "Push Ups": pushUpsSwitched,
-                  "Dumbbell Flyes": dumbellSwitched,
-                  "Incline": inclineSwitched,
-                  "Decline": declineSwitched,
-                  "Dips": dipsSwitched,
-                  "Cable Chest": cableSwitched,
-                  "setsBench": num,
-                  "RepsBench": num2,
-                  "setsPush": num3,
-                  "RepsPush": num4,
-                  "setsDumbbell": num5,
-                  "RepsDumbbell": num6,
-                  "setsIncline": num7,
-                  "RepsIncline": num8,
-                  "setsDecline": num9,
-                  "RepsDecline": num10,
-                  "setsDips": num11,
-                  "RepsDips": num12,
-                  "setsCable": num13,
-                  "RepsCable": num14,
+                  "DeadLift": deadLift2Switched,
+                  "Leg press": legPressSwitched,
+                  "Seated hamstring curl": hamstringSwitched,
+                  "Seated leg extension": legExtensionSwitched,
+                  "Dumbbell lunge": lungeSwitched,
+                  "Squats": squatsSwitched,
+                  "Single leg curl": singleLegSwitched,
+                  "setsLift": num,
+                  "RepsLift": num2,
+                  "setsLegPress": num3,
+                  "RepsLegPress": num4,
+                  "setsHamstring": num5,
+                  "RepsHamstring": num6,
+                  "setsLegExtension": num7,
+                  "RepsLegExtension": num8,
+                  "setsDumbbell": num9,
+                  "RepsDumbbell": num10,
+                  "setsSquats": num11,
+                  "RepsSquats": num12,
+                  "setsSingleLeg": num13,
+                  "RepsSingleLeg": num14,
                 };
                 FirebaseFirestore.instance
-                    .collection("Pecho")
+                    .collection("Pierna")
                     .doc(FirebaseAuth.instance.currentUser!.email.toString())
                     .set(data);
                 Navigator.pop(context);
