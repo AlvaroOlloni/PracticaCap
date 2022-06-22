@@ -43,6 +43,7 @@ dependencies:
   page_transition: ^2.0.5
   firebase_storage: ^10.2.17
   shared_preferences: ^2.0.15
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   flutter_test:
