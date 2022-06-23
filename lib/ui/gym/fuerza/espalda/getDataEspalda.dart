@@ -25,7 +25,7 @@ Widget card() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -48,34 +48,225 @@ Widget card() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Espalda")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsLift'];
-                            var value2 = data['RepsLift'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsLift": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Espalda")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsLift'];
+                                var value2 = data['RepsLift'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsLift": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -109,7 +300,7 @@ Widget card2() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -132,34 +323,228 @@ Widget card2() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Espalda")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsDumbbell'];
-                            var value2 = data['RepsDumbbell'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        StreamBuilder<Object>(
+                            stream: null,
+                            builder: (context, snapshot) {
+                              return ElevatedButton(
+                                onPressed: () {
+                                  final numSets = TextEditingController();
+
+                                  int num = 0;
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          backgroundColor: Colors.black,
+                                          title: const Text(
+                                            "Change sets",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30,
+                                            ),
+                                          ),
+                                          content: SizedBox(
+                                            height: 100,
+                                            width: 200,
+                                            child: Column(
+                                              children: [
+                                                TextField(
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  controller: numSets,
+                                                  style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    hintText: "Sets",
+                                                    hintStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    fillColor: Color.fromARGB(
+                                                        123, 255, 255, 255),
+                                                    filled: true,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          actions: <Widget>[
+                                            MaterialButton(
+                                              elevation: 0.5,
+                                              child: const Text(
+                                                "Confirm",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                if (numSets.text.isEmpty ==
+                                                    true) {
+                                                  num = 0;
+                                                } else {
+                                                  num = int.parse(numSets.text);
+                                                }
+                                                final CollectionReference
+                                                    collectionReference =
+                                                    FirebaseFirestore.instance
+                                                        .collection("Espalda");
+                                                collectionReference
+                                                    .doc(FirebaseAuth.instance
+                                                        .currentUser!.email
+                                                        .toString())
+                                                    .update(
+                                                        {"setsDumbbell": num});
+                                                Navigator.pop(context);
+                                              },
+                                            )
+                                          ],
+                                        );
+                                      });
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.white),
+                                child: const Text(
+                                  "Change ->",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                              );
+                            }),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Espalda")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsDumbbell'];
+                                var value2 = data['RepsDumbbell'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsDumbbell": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -194,7 +579,7 @@ Widget card3() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -217,34 +602,225 @@ Widget card3() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Espalda")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsPull'];
-                            var value2 = data['RepsPull'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsPullDown": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Espalda")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsPullDown'];
+                                var value2 = data['RepsPullDown'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsPullDown": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -279,7 +855,7 @@ Widget card4() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -302,34 +878,225 @@ Widget card4() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Espalda")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsOver'];
-                            var value2 = data['RepsOver'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsOver": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Espalda")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsOver'];
+                                var value2 = data['RepsOver'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsOver": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -364,7 +1131,7 @@ Widget card5() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -387,34 +1154,225 @@ Widget card5() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Espalda")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsSeated'];
-                            var value2 = data['RepsSeated'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsSeated": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Espalda")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsSeated'];
+                                var value2 = data['RepsSeated'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsSeated": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -449,7 +1407,7 @@ Widget card6() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -472,34 +1430,225 @@ Widget card6() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Espalda")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsSingle'];
-                            var value2 = data['RepsSingle'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsSingle": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Espalda")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsSingle'];
+                                var value2 = data['RepsSingle'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsSingle": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -534,7 +1683,7 @@ Widget card7() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -557,34 +1706,225 @@ Widget card7() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Espalda")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsPull'];
-                            var value2 = data['RepsPull'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsUps": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Espalda")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsUps'];
+                                var value2 = data['RepsUps'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Espalda");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsUps": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),

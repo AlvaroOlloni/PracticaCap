@@ -12,6 +12,13 @@ class MostrarEspaldaScreen extends StatefulWidget {
 class _MostrarEspaldaScreenState extends State<MostrarEspaldaScreen> {
   @override
   Widget build(BuildContext context) {
+    Future<void>.delayed(const Duration(seconds: 0)).then(
+      (value) {
+        setState(() {
+          const MostrarEspaldaScreen();
+        });
+      },
+    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Ejercicios Seleccionados',
