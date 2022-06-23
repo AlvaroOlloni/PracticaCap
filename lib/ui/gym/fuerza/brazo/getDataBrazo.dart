@@ -25,7 +25,7 @@ Widget card() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -48,34 +48,225 @@ Widget card() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Brazo")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsBarbell'];
-                            var value2 = data['RepsBarbell'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsBarbell": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Brazo")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsBarbell'];
+                                var value2 = data['RepsBarbell'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsBarbell": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -109,7 +300,7 @@ Widget card2() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -132,34 +323,225 @@ Widget card2() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Brazo")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsPreacher'];
-                            var value2 = data['RepsPreacher'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsPreacher": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Brazo")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsPreacher'];
+                                var value2 = data['RepsPreacher'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsPreacher": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -194,7 +576,7 @@ Widget card3() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -217,34 +599,227 @@ Widget card3() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Brazo")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsCableBiceps'];
-                            var value2 = data['RepsCableBiceps'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update(
+                                                    {"setsCableBiceps": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Brazo")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsCableBiceps'];
+                                var value2 = data['RepsCableBiceps'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update(
+                                                    {"RepsCableBiceps": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -279,7 +854,7 @@ Widget card4() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -302,34 +877,227 @@ Widget card4() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Brazo")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsCableTriceps'];
-                            var value2 = data['RepsCableTriceps'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update(
+                                                    {"setsCableTriceps": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Brazo")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsCableTriceps'];
+                                var value2 = data['RepsCableTriceps'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update(
+                                                    {"RepsCableTriceps": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -364,7 +1132,7 @@ Widget card5() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -387,34 +1155,225 @@ Widget card5() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Brazo")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsDips'];
-                            var value2 = data['RepsDips'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsDips": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Brazo")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsDips'];
+                                var value2 = data['RepsDips'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsDips": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -449,7 +1408,7 @@ Widget card6() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -472,34 +1431,225 @@ Widget card6() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Brazo")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsOverhead'];
-                            var value2 = data['RepsOverhead'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsOverhead": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Brazo")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsOverhead'];
+                                var value2 = data['RepsOverhead'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"RepsOverhead": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -534,7 +1684,7 @@ Widget card7() {
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -557,34 +1707,227 @@ Widget card7() {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                      child:
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                        future: FirebaseFirestore.instance
-                            .collection("Brazo")
-                            .doc(FirebaseAuth.instance.currentUser!.email
-                                .toString())
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.data();
-                            var value = data!['setsCloseGrips'];
-                            var value2 = data['RepsCloseGrip'];
-                            return Text(
-                              '$value x $value2',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update(
+                                                    {"setsCloseGrips": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "Change ->",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection("Brazo")
+                                .doc(FirebaseAuth.instance.currentUser!.email
+                                    .toString())
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var data = snapshot.data!.data();
+                                var value = data!['setsCloseGrips'];
+                                var value2 = data['RepsCloseGrip'];
+                                return Text(
+                                  '$value x $value2',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        StreamBuilder<Object>(
+                          stream: null,
+                          builder: (context, snapshot) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                final numSets = TextEditingController();
+
+                                int num = 0;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Brazo");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update(
+                                                    {"RepsCloseGrips": num});
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white),
+                              child: const Text(
+                                "<- Change",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             );
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),

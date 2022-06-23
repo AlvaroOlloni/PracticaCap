@@ -12,6 +12,13 @@ class MostrarBrazoScreen extends StatefulWidget {
 class _MostrarBrazoScreenState extends State<MostrarBrazoScreen> {
   @override
   Widget build(BuildContext context) {
+    Future<void>.delayed(const Duration(seconds: 0)).then(
+      (value) {
+        setState(() {
+          const MostrarBrazoScreen();
+        });
+      },
+    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Ejercicios Seleccionados',

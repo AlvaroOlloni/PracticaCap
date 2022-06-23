@@ -12,6 +12,13 @@ class MostrarPiernaScreen extends StatefulWidget {
 class _MostrarPiernaScreenState extends State<MostrarPiernaScreen> {
   @override
   Widget build(BuildContext context) {
+    Future<void>.delayed(const Duration(seconds: 0)).then(
+      (value) {
+        setState(() {
+          const MostrarPiernaScreen();
+        });
+      },
+    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Ejercicios Seleccionados',
