@@ -12,6 +12,13 @@ class MostrarPechoScreen extends StatefulWidget {
 class _MostrarPechoScreenState extends State<MostrarPechoScreen> {
   @override
   Widget build(BuildContext context) {
+    Future<void>.delayed(const Duration(seconds: 0)).then(
+      (value) {
+        setState(() {
+          const MostrarPechoScreen();
+        });
+      },
+    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Ejercicios Seleccionados',

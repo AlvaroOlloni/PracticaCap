@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,36 +21,131 @@ Future<String> getBenchPress() async {
 
 Widget card() {
   return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
       Flexible(
         child: SizedBox(
           width: 410,
-          height: 100,
+          height: 110,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
             color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Bench Press",
-                          style: GoogleFonts.blackHanSans(
-                            fontSize: 40,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      "Bench Press",
+                      style: GoogleFonts.blackHanSans(
+                        fontSize: 40,
+                        color: Colors.black,
+                      ),
                     ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    StreamBuilder<Object>(
+                        stream: null,
+                        builder: (context, snapshot) {
+                          return ElevatedButton(
+                            onPressed: () {
+                              final numSets = TextEditingController();
+
+                              int num = 0;
+
+                              final numSets2 = TextEditingController();
+
+                              int num2 = 0;
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.black,
+                                      title: const Text(
+                                        "Change sets",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                        ),
+                                      ),
+                                      content: SizedBox(
+                                        height: 100,
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: numSets,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: const InputDecoration(
+                                                hintText: "Sets",
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                fillColor: Color.fromARGB(
+                                                    123, 255, 255, 255),
+                                                filled: true,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        MaterialButton(
+                                          elevation: 0.5,
+                                          child: const Text(
+                                            "Confirm",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (numSets.text.isEmpty == true) {
+                                              num = 0;
+                                            } else {
+                                              num = int.parse(numSets.text);
+                                            }
+                                            final CollectionReference
+                                                collectionReference =
+                                                FirebaseFirestore.instance
+                                                    .collection("Pecho");
+                                            collectionReference
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString())
+                                                .update({"setsBench": num});
+                                            Navigator.pop(context);
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
+                            },
+                            style:
+                                ElevatedButton.styleFrom(primary: Colors.white),
+                            child: const Text(
+                              "Change ->",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          );
+                        }),
                     SizedBox(
-                      height: 40,
+                      height: 30,
                       child:
                           FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                         future: FirebaseFirestore.instance
@@ -75,6 +171,17 @@ Widget card() {
                             );
                           }
                         },
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(primary: Colors.white),
+                      child: const Text(
+                        "<- Change",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
                       ),
                     ),
                   ],
