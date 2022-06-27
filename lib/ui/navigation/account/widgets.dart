@@ -43,7 +43,7 @@ createAlertDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: Color.fromARGB(255, 34, 56, 67),
+        backgroundColor: const Color.fromARGB(255, 34, 56, 67),
         title: const Text(
           "Change username",
           style: TextStyle(
@@ -244,7 +244,7 @@ StreamBuilder<Object> alertDialogSignOut() {
             child: OutlinedButton(
               onPressed: () => {createAlertDialog(context)},
               style: OutlinedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 side: const BorderSide(
                   color: Color.fromARGB(255, 0, 0, 0),
                   width: 6,

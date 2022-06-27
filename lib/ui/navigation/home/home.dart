@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mi_app/ui/gym/gym.dart';
+import 'package:mi_app/ui/gym/fuerza/escogerOpcion/gym.dart';
 import 'package:mi_app/ui/navigation/home/widgets.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -131,8 +131,8 @@ Widget cardNotes() {
 Widget cardGym() {
   return Flexible(
     child: Container(
-      width: 250,
-      height: 190,
+      width: 400,
+      height: 450,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.0),
         image: const DecorationImage(
@@ -145,7 +145,7 @@ Widget cardGym() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        color: Color.fromARGB(0, 255, 255, 255),
+        color: const Color.fromARGB(0, 255, 255, 255),
         elevation: 20,
         child: Column(
           children: [

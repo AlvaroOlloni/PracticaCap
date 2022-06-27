@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
-import 'package:mi_app/ui/user/login/login.dart';
+import 'package:mi_app/checkUser.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,10 +15,10 @@ class MiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: Inicio(),
+      home: Check(),
     );
   }
 }

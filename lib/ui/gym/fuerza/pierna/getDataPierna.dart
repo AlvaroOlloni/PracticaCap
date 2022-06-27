@@ -305,7 +305,7 @@ Widget card2() {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Color.fromARGB(122, 255, 255, 255),
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -581,7 +581,7 @@ Widget card3() {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Color.fromARGB(122, 255, 255, 255),
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -857,7 +857,7 @@ Widget card4() {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Color.fromARGB(122, 255, 255, 255),
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -1135,7 +1135,7 @@ Widget card5() {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Color.fromARGB(122, 255, 255, 255),
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -1411,7 +1411,7 @@ Widget card6() {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Color.fromARGB(122, 255, 255, 255),
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -1687,7 +1687,7 @@ Widget card7() {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: Color.fromARGB(122, 255, 255, 255),
+            color: const Color.fromARGB(122, 255, 255, 255),
             child: Column(
               children: [
                 Column(

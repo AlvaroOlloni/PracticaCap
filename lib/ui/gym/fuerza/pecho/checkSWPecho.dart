@@ -466,7 +466,7 @@ checkDialog1(
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           title: const Text(
             "   Sets and reps",
             style: TextStyle(

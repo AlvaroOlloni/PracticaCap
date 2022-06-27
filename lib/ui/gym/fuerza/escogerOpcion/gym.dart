@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mi_app/ui/gym/widCardio.dart';
-import 'package:mi_app/ui/gym/widDieta.dart';
-import 'package:mi_app/ui/gym/widFuerza.dart';
+import 'package:mi_app/ui/gym/fuerza/escogerOpcion/widFuerza.dart';
+import 'package:mi_app/ui/gym/fuerza/escogerOpcion/widCardio.dart';
+import 'package:mi_app/ui/gym/fuerza/escogerOpcion/widDieta.dart';
 
 class GymScreen extends StatelessWidget {
   const GymScreen({Key? key}) : super(key: key);

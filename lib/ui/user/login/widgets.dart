@@ -95,6 +95,10 @@ Widget botonEntrar() {
           usu = usuario.text;
           pass = password.text;
 
+          final SharedPreferences sharedPreferences =
+              await SharedPreferences.getInstance();
+          sharedPreferences.setString('email', pass);
+
           //Crear un usuario nuevo
           //Cambiar por LogIn y poner este método en Register.dart
           try {

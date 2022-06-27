@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mi_app/ui/gym/fuerza/brazo/checkSWBrazo.dart';
@@ -69,7 +67,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
               ),
             ),
             centerTitle: true,
-            backgroundColor: Color.fromARGB(255, 0, 0, 0),
+            backgroundColor: const Color.fromARGB(255, 0, 0, 0),
             elevation: 0,
             /* give the app bar rounded corners
             shape: const RoundedRectangleBorder(
@@ -102,7 +100,7 @@ class _FuerzaScreenState extends State<FuerzaScreen> {
                 SizedBox(
                   height: 50,
                   child: AppBar(
-                    backgroundColor: Color.fromARGB(0, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(0, 255, 255, 255),
                     bottom: const TabBar(
                       tabs: [
                         Tab(

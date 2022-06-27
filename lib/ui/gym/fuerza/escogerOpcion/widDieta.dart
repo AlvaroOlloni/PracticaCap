@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../navigation/nav.dart';
+import 'package:mi_app/ui/navigation/nav.dart';
 
 Widget botonDieta() {
   return StreamBuilder(
@@ -12,7 +11,7 @@ Widget botonDieta() {
         height: 176,
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
-            backgroundColor: Color.fromARGB(0, 255, 255, 255),
+            backgroundColor: const Color.fromARGB(0, 255, 255, 255),
             //backgroundColor: const Color.fromARGB(255, 207, 40, 231),
             side: const BorderSide(
               color: Color.fromARGB(255, 255, 255, 255),
@@ -33,7 +32,7 @@ Widget botonDieta() {
           child: Text(
             "Strength",
             style: GoogleFonts.blackHanSans(
-                fontSize: 30, color: Color.fromARGB(0, 0, 0, 0)),
+                fontSize: 30, color: const Color.fromARGB(0, 0, 0, 0)),
           ),
         ),
       );
